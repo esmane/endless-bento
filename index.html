@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<title>arrange the night away</title>
+		
+		<link rel="stylesheet" href="styles.css">
+		<script src="main.js"></script>
+		<script src="buttons.js"></script>
+		<script src="clues.js"></script>
+		<script src="solutions.js"></script>
+	</head>
+	
+	<body>
+		<header>
+			<h1>endless bento</h1>
+		</header>
+		
+		<div id="left-side" class="main-element">
+			<!-- clues will go here -->
+		</div>
+		
+		<div id="right-side" class="main-element">
+			<div id="grid" oncontextmenu="return false;">
+				<div class="grid-row">
+					<div class="grid-item">
+						<img id="0-0" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(0, 0)" oncontextmenu="clearTile(0, 0)">
+					</div>
+					<div class="grid-item">
+						<img id="0-1" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(0, 1)" oncontextmenu="clearTile(0, 1)">
+					</div>
+					<div class="grid-item">
+						<img id="0-2" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(0, 2)" oncontextmenu="clearTile(0, 2)">
+					</div>
+				</div>
+				
+				<div class="grid-row">
+					<div class="grid-item">
+						<img id="1-0" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(1, 0)" oncontextmenu="clearTile(1, 0)">
+					</div>
+					<div class="grid-item">
+						<img id="1-1" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(1, 1)" oncontextmenu="clearTile(1, 1)">
+					</div>
+					<div class="grid-item">
+						<img id="1-2" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(1, 2)" oncontextmenu="clearTile(1, 2)">
+					</div>
+				</div>
+				
+				<div class="grid-row">
+					<div class="grid-item">
+						<img id="2-0" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(2, 0)" oncontextmenu="clearTile(2, 0)">
+					</div>
+					<div class="grid-item">
+						<img id="2-1" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(2, 1)" oncontextmenu="clearTile(2, 1)">
+					</div>
+					<div class="grid-item">
+						<img id="2-2" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(2, 2)" oncontextmenu="clearTile(2, 2)">
+					</div>
+				</div>
+			</div>
+			<br>
+			<div id="buttons">
+				<button id="a" class="game-button" onclick="setLetter('a')">
+					<img class="tile-50" src="./tiles/a.png" alt="a">
+				</button>
+				<button id="b" class="game-button" onclick="setLetter('b')">
+					<img class="tile-50" src="./tiles/b.png" alt="b">
+				</button>
+				<button id="c" class="game-button" onclick="setLetter('c')">
+					<img class="tile-50" src="./tiles/c.png" alt="c">
+				</button>
+				&nbsp;
+				<button id="1" class="game-button" onclick="setNumber('1')">
+					<img class="tile-50" src="./tiles/1.png" alt="1">
+				</button>
+				<button id="2" class="game-button" onclick="setNumber('2')">
+					<img class="tile-50" src="./tiles/2.png" alt="2">
+				</button>
+				<button id="3" class="game-button" onclick="setNumber('3')">
+					<img class="tile-50" src="./tiles/3.png" alt="3">
+				</button>
+				&nbsp;
+				<button id="x" class="game-button" onclick="setDelete()">
+					<img class="tile-50" src="./tiles/x.png" alt="x">
+				</button>
+			</div>
+		</div>
+	</body>
+</html>

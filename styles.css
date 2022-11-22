@@ -1,0 +1,93 @@
+body {
+	margin: 0;
+	padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+	background-color: #baffee;
+}
+
+header {
+	width: 100%;
+	background-color: #a9eedd;
+	top: 0;
+}
+
+/* main */
+.main-element {
+	display: inline-block;
+	vertical-align: middle;
+	max-width: 75%;
+	max-height: 50%;
+	padding: 20px;
+}
+
+/* clues */
+.clue-grid {
+	display: inline;
+	padding: 5px;
+}
+
+.clue-row {
+	height: 50px;
+	padding: 1px;
+}
+
+.clue-item {
+	display: inline;
+	padding: 1px;
+}
+
+#left-side .tile-50 {
+	background-color: #a9eedd;
+}
+
+
+/* grid */
+.grid-item {
+	display: inline;
+	padding: 1px;
+}
+
+.grid-row {
+	padding: 1px;
+}
+
+.tile-100 {
+	width: 100px;
+	height: 100px;
+	background-color: #a0522d;
+}
+
+.tile-50 {
+	width: 50px;
+	height: 50px;
+}
+
+/* buttons */
+.game-button {
+	background: #b1633e;
+	border: none;
+	
+	width: 50px;
+	height: 50px;
+	padding: 0;
+	transition: all 0.2s;
+}
+
+.selected-game-button {
+	background: #ff77dd;
+	border: none;
+	
+	width: 50px;
+	height: 50px;
+	padding: 0;
+	transition: all 0.2s;
+}
+
+.game-button:hover {
+	background: #ddaa55;
+}
+
+.selected-game-button:hover {
+	background: #ffeeee;
+}
