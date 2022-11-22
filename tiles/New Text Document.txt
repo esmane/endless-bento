@@ -1,0 +1,7 @@
+a = blue
+b = yellow
+c = red
+
+1 = triangle
+2 = diamond
+3 = circle
