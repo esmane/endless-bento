@@ -1,29 +1,42 @@
 body {
 	margin: 0;
 	padding: 0;
+	top: 0;
     font-family: Helvetica, Arial, sans-serif;
     text-align: center;
 	background-color: #baffee;
 }
 
-header {
+h1 {
+	margin: 0;
+	padding: 5px;
+}
+
+h3 {
+	margin: 2px;
+}
+
+#header {
 	width: 100%;
 	background-color: #a9eedd;
 	top: 0;
+	padding: 0;
 }
 
 /* main */
 .main-element {
 	display: inline-block;
 	vertical-align: middle;
-	max-width: 75%;
-	max-height: 50%;
 	padding: 20px;
 }
 
 /* clues */
+.clue-block {
+	display: inline-block;
+	max-width: 30vw;
+}
 .clue-grid {
-	display: inline;
+	display: inline-block;
 	padding: 5px;
 }
 
@@ -90,4 +103,34 @@ header {
 
 .selected-game-button:hover {
 	background: #ffeeee;
+}
+
+
+/* menu */
+#menu {  
+	display: none;
+	overflow-x: hidden;
+}
+
+#header-right {
+}
+
+/* narrow screen */
+@media screen and (max-aspect-ratio: 3/4) {
+	.clue-block {
+		display: inline-block;
+		max-width: 80vw;
+	}
+}
+
+/* dark mode default */
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #253330;
+		color: #ffffff;
+	}
+	
+	#header {
+		background-color: #131918;
+	}
 }

@@ -2,9 +2,15 @@
 const GRID_SIZE_W = 3;
 const GRID_SIZE_H = 3;
 
+// game settings
+var difficulty = 0;		// 0 for random, 1 for easy, 2 for hard
+var autoSelect = 'n';	// n for number, l for letter, x for neither
+var isDarkBackground = false;
+
 // variables
 var playerGrid;
 var solutionGrid;
+var clues = [];
 
 var selectedLetter = 'a';
 var selectedNumber = '1';
@@ -15,66 +21,26 @@ var oldSelectedNumber = '1';
 // this function runs on startup and is responsible for starting the game
 window.onload = function()
 {
+	// reset the grid
 	clearPlayerGrid();
 	
 	setLetter('a');
-	setNumber('1');	
+	setNumber('1');
 	
-	puzzle1();
-}
-
-// set the player grid to all blanks
-function clearPlayerGrid()
-{
-	playerGrid = [];
-	for(let i = 0; i < GRID_SIZE_W; i++)
-	{
-		playerGrid[i] = [];
-		for(let j = 0; j < GRID_SIZE_H; j++)
-		{
-			playerGrid[i][j] = "x-x";
-		}
-	}
-}
-
-
-function setTile(x, y)
-{
-	playerGrid[x][y] = selectedLetter + '-' + selectedNumber;
-	document.getElementById(x + '-' + y).src = "./tiles/" + playerGrid[x][y] + ".png";
+	// settings updates and stuff
+	// in the future i will add cookies so settings are saved and they will be loaded here
+	document.getElementById("difficulty-rand").checked = true;
+	document.getElementById("autosel-number").checked = true;
 	
-	if(playerGrid === solutionGrid)
+	if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)
 	{
-		alert("Congratulations! The puzzle is completely solved");
+		document.getElementById("dark-background-option").checked = true;
 	}
 	else
 	{
-		// select a new tiles
-		switch(selectedNumber)
-		{
-		case '1':
-			{
-				setNumber('2');
-			}
-			break;
-			
-		case '2':
-			{
-				setNumber('3');
-			}
-			break;
-		case '3':
-			{
-				setNumber('1');
-			}
-			break;
-		}
+		document.getElementById("dark-background-option").checked = false;		
 	}
+	
+	// generate a new puzzle
+	generatePuzzleById(2);
 }
-
-function clearTile(x, y)
-{
-	playerGrid[x][y] = "x-x";
-	document.getElementById(x + '-' + y).src = "./tiles/" + playerGrid[x][y] + ".png";
-}
-

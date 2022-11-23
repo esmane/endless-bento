@@ -9,20 +9,57 @@
 		
 		<link rel="stylesheet" href="styles.css">
 		<script src="main.js"></script>
+		<script src="grid.js"></script>
 		<script src="buttons.js"></script>
 		<script src="clues.js"></script>
 		<script src="solutions.js"></script>
+		<script src="generate.js"></script>
+		<script src="menu.js"></script>
 	</head>
 	
 	<body>
-		<header>
-			<h1>endless bento</h1>
-		</header>
+		<div id="header">
+			<div id="header-center">
+				<h1 id="main-header">endless bento</h1>
+			</div>
+			<div id="header-right">
+				<button id="menu-button" class="ui-button" onclick="openMenu()">
+					MENU
+				</button>
+			</div>
+		</div>
+		<br>
 		
-		<div id="left-side" class="main-element">
-			<!-- clues will go here -->
+		<div id="menu">
+			<h2>colors</h2>
+			<label for="dark-background-option">dark background</label>
+			<input type="checkbox" id="dark-background-option" onchange="setBackground()">
+			<br><br>
+			
+			<h2>difficulty</h2>	
+			<label for="difficulty-jr">Junior</label>
+			<input type="radio" id="difficulty-jr" name="difficulty" onclick="setDifficulty(1)"><br>
+			<label for="difficulty-sr">Senior</label>
+			<input type="radio" id="difficulty-sr" name="difficulty" onclick="setDifficulty(2)"><br>
+			<label for="difficulty-rand">Random</label>
+			<input type="radio" id="difficulty-rand" name="difficulty" onclick="setDifficulty(0)"><br>
+			<br><br>
+			
+			<h2>autoselect mode</h2>
+			<label for="autosel-letter">Color</label>
+			<input type="radio" id="autosel-letter" name="autoselect" onclick="setAutosel('l')"><br>
+			<label for="autosel-number">Shape</label>
+			<input type="radio" id="autosel-number" name="autoselect" onclick="setAutosel('n')"><br>
+			<label for="autosel-off">Neither</label>
+			<input type="radio" id="autosel-off" name="autoselect" onclick="setAutosel('x')"><br>
 		</div>
 		
+		<div id="left-side" class="main-element">
+			<div id="clues" class="clue-block">
+				<!-- clues will go here -->
+			</div>
+		</div>
+
 		<div id="right-side" class="main-element">
 			<div id="grid" oncontextmenu="return false;">
 				<div class="grid-row">
@@ -62,6 +99,7 @@
 				</div>
 			</div>
 			<br>
+			
 			<div id="buttons">
 				<button id="a" class="game-button" onclick="setLetter('a')">
 					<img class="tile-50" src="./tiles/a.png" alt="a">
