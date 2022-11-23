@@ -20,12 +20,46 @@ function shuffleArray(array) {
     }
 }
 
+
+// rotation functions for clues
+// source: https://jsfiddle.net/a2Lgksdq/
+function transpose(a) {
+	let b = [];
+	const w = a[0].length; // width of a
+	const h = a.length; // height of a
+	for (let c=0; c<w; c++) {
+		let row = [];
+		for (let r=h-1; r>=0; r--) {
+			row.push(a[r][c]);
+		}
+		b.push(row);
+	}
+	return b;
+}
+
+function mirror(a) {
+	let b = [];
+	const w = a[0].length; // width of a
+	const h = a.length; // height of a
+	for (let r=0; r<h; r++) {
+		let y = h-r-1;
+		b[y] = [];
+		for (let c=0; c<w; c++) {
+			let x = w-c-1;
+			b[y][x] = a[r][c];
+		}
+	}
+	return b;
+}
+
+
 function random_range(min, max)
 {
 	min = Math.ceil(min);
 	max = Math.floor(max);
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 
 function newPuzzle()
 {
@@ -169,11 +203,49 @@ function generatePuzzleById(id)
 		}
 	}
 	
+	// possibly rotate
+	var rotate = random_range(0, 3);
+	switch(rotate)
+	{
+		 case 0:
+			// no rotation
+			break;
+		 case 1:
+			// 90 cw
+			solutionGrid = transpose(solutionGrid);
+			for(let i = 0; i < clues.length; i++)
+			{
+				clues[i] = transpose(clues[i]);
+			}
+			break;
+		 case 2:
+			// 180
+			solutionGrid = mirror(solutionGrid);
+			for(let i = 0; i < clues.length; i++)
+			{
+				clues[i] = mirror(clues[i]);
+			}
+			break;
+		 case 3:
+			// 90 ccw
+			// 90 cw
+			solutionGrid = mirror(transpose(solutionGrid));
+			for(let i = 0; i < clues.length; i++)
+			{
+				clues[i] = mirror(transpose(clues[i]));
+			}
+			break;
+	}
+	
 	// now let's draw those arrays to the screen
 	clearClues();
 	shuffleArray(clues);
 	for(let i = 0; i < clues.length; i++)
 	{
 		drawClue(clues[i]);
-	}	
+	}
+
+	// finally let's write a description of the puzzle we just generated into debugPuzzleInfo so we can debug the puzzle as necessary
+	// format: puzzleId-def-456-rotate
+	debugPuzzleInfo = 'a' + puzzleId + '-' + solutionD + solutionE + solutionF + solution4 + solution5 + solution6 + '-' + rotate;
 }

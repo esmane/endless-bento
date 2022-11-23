@@ -12,6 +12,7 @@ var playerGrid;
 var solutionGrid;
 var clues = [];
 var puzzleId = 0;
+var debugPuzzleInfo;
 
 var selectedLetter = 'a';
 var selectedNumber = '1';
