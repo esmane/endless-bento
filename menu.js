@@ -8,7 +8,7 @@ function openMenu()
 		document.getElementById("menu").style.display = "none";
 		document.getElementById("left-side").style.display = "inline-block";
 		document.getElementById("right-side").style.display = "inline-block";
-		document.getElementById("menu-button").innerHTML = "MENU";
+		document.getElementById("menu-button").innerHTML = "menu";
 		document.getElementById("main-header").innerHTML = "endless bento";
 	}
 	else
@@ -17,7 +17,7 @@ function openMenu()
 		document.getElementById("menu").style.display = "inline";
 		document.getElementById("left-side").style.display = "none";
 		document.getElementById("right-side").style.display = "none";
-		document.getElementById("menu-button").innerHTML = "BACK";
+		document.getElementById("menu-button").innerHTML = "back";
 		document.getElementById("main-header").innerHTML = "settings";
 	}
 }
@@ -29,6 +29,9 @@ function setBackground()
 		document.body.style.backgroundColor = "#253330";
 		
 		document.getElementById("header").style.backgroundColor = "#131918";
+		document.getElementById("menu-button").style.color = "#ffffff";
+		document.getElementById("restart-button").style.color = "#ffffff";
+		
 		document.body.style.color = "#ffffff";
 		isDarkBackground = true;
 	}
@@ -37,6 +40,9 @@ function setBackground()
 		document.body.style.backgroundColor = "#baffee";
 		
 		document.getElementById("header").style.backgroundColor = "#a9eedd";
+		document.getElementById("menu-button").style.color = "#000000";
+		document.getElementById("restart-button").style.color = "#000000";
+		
 		document.body.style.color = "#000000";
 		isDarkBackground = false;
 	}

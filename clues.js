@@ -9,7 +9,7 @@ function drawClue(clue)
 			toAppend += "<div class='clue-item'><img class='tile-50' src='./tiles/";
 			
 			// the important part! this is where the actual clue gets drawn
-			if(clue[i][j] === 'x')
+			if(clue[i][j] == "x")
 			{
 				toAppend += "x-x";
 			}

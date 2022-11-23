@@ -1,3 +1,25 @@
+// what is this even for?
+// the solutions as defined in solution.js have the solutiongrid and clues defined with d, e, f and 4, 5, 6
+// this is so we can shuffle them up when we actually draw the puzzle
+// to create the illusion of there being more different puzzles than there are
+var solutionD = 'a';
+var solutionE = 'b';
+var solutionF = 'c';
+var solution4 = '1';
+var solution5 = '2';
+var solution6 = '3';
+
+// shuffle function for clues 
+// source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
 function random_range(min, max)
 {
 	min = Math.ceil(min);
@@ -7,18 +29,34 @@ function random_range(min, max)
 
 function newPuzzle()
 {
+	// reset the grid
+	clearPlayerGrid();
+	redrawGrid();
+	
+	let oldPuzzleId = puzzleId;
+	
 	switch(difficulty)
 	{
 		case 0:
-			generatePuzzleById(random_range(1, 20));
+			while(puzzleId === oldPuzzleId)
+			{
+				puzzleId = random_range(1, 20);
+			}
 			break;
 		case 1:
-			generatePuzzleById(random_range(1, 10));
+			while(puzzleId === oldPuzzleId)
+			{
+				puzzleId = random_range(1, 10);
+			}
 			break;
 		case 2:
-			generatePuzzleById(random_range(11, 20));
+			while(puzzleId === oldPuzzleId)
+			{
+				puzzleId = random_range(11, 20);
+			}
 			break;
 	}
+	generatePuzzleById(puzzleId);
 }
 
 function generatePuzzleById(id)
@@ -88,8 +126,52 @@ function generatePuzzleById(id)
 			break;
 	}
 	
+	// now let's figure out what shape each letter is going to be etc
+	solutionF = "abc";
+	solutionD = solutionF.charAt(random_range(0, 2));
+	solutionF = solutionF.replace(solutionD, '');
+	solutionE = solutionF.charAt(random_range(0, 1));
+	solutionF = solutionF.replace(solutionE, '');
+	
+	solution6 = "123";
+	solution4 = solution6.charAt(random_range(0, 2));
+	solution6 = solution6.replace(solution4, '');
+	solution5 = solution6.charAt(random_range(0, 1));
+	solution6 = solution6.replace(solution5, '');
+	
+	// now let's adjust the solutiongrid
+	for(let i = 0; i < solutionGrid.length; i++)
+	{
+		for(let j = 0; j < solutionGrid[i].length; j++)
+		{
+			solutionGrid[i][j] = solutionGrid[i][j].replace('d', solutionD);
+			solutionGrid[i][j] = solutionGrid[i][j].replace('e', solutionE);
+			solutionGrid[i][j] = solutionGrid[i][j].replace('f', solutionF);
+			solutionGrid[i][j] = solutionGrid[i][j].replace('4', solution4);
+			solutionGrid[i][j] = solutionGrid[i][j].replace('5', solution5);
+			solutionGrid[i][j] = solutionGrid[i][j].replace('6', solution6);
+		}
+	}
+	// and the clues
+	for(let i = 0; i < clues.length; i++)
+	{
+		for(let j = 0; j < clues[i].length; j++)
+		{
+			for(let k = 0; k < clues[i][j].length; k++)
+			{
+			clues[i][j][k] = clues[i][j][k].replace('d', solutionD);
+			clues[i][j][k] = clues[i][j][k].replace('e', solutionE);
+			clues[i][j][k] = clues[i][j][k].replace('f', solutionF);
+			clues[i][j][k] = clues[i][j][k].replace('4', solution4);
+			clues[i][j][k] = clues[i][j][k].replace('5', solution5);
+			clues[i][j][k] = clues[i][j][k].replace('6', solution6);
+			}
+		}
+	}
+	
 	// now let's draw those arrays to the screen
 	clearClues();
+	shuffleArray(clues);
 	for(let i = 0; i < clues.length; i++)
 	{
 		drawClue(clues[i]);

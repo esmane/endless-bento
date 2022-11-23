@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	top: 0;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Helvetica Neue, Arial, sans-serif;
     text-align: center;
 	background-color: #baffee;
 }
@@ -14,6 +14,10 @@ h1 {
 
 h3 {
 	margin: 2px;
+}
+
+h2 {
+	margin: 5px;
 }
 
 #header {
@@ -37,17 +41,17 @@ h3 {
 }
 .clue-grid {
 	display: inline-block;
-	padding: 5px;
+	padding: 6px;
 }
 
 .clue-row {
 	height: 50px;
-	padding: 1px;
+	padding: 0.5px;
 }
 
 .clue-item {
 	display: inline;
-	padding: 1px;
+	padding: 0.5px;
 }
 
 #left-side .tile-50 {
@@ -115,6 +119,23 @@ h3 {
 #header-right {
 }
 
+.ui-button{
+	font-family: Helvetica Neue, Arial, sans-serif;
+	background-color: transparent;
+	display: inline-block;
+	border: 0.1em solid;
+	margin: 0 0.3em 0.3em 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	text-align: center;
+	transition: all 0.2s;
+}
+
+.ui-button:hover{
+	color: #000000;
+	background-color: #ddaa55;
+}
+
 /* narrow screen */
 @media screen and (max-aspect-ratio: 3/4) {
 	.clue-block {
@@ -132,5 +153,9 @@ h3 {
 	
 	#header {
 		background-color: #131918;
+	}
+	
+	.ui-button {
+		color: #000000;
 	}
 }

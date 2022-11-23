@@ -24,7 +24,10 @@
 			</div>
 			<div id="header-right">
 				<button id="menu-button" class="ui-button" onclick="openMenu()">
-					MENU
+					menu
+				</button>
+				<button id="restart-button" class="ui-button" onclick="newPuzzle()">
+					new puzzle
 				</button>
 			</div>
 		</div>
@@ -43,7 +46,7 @@
 			<input type="radio" id="difficulty-sr" name="difficulty" onclick="setDifficulty(2)"><br>
 			<label for="difficulty-rand">Random</label>
 			<input type="radio" id="difficulty-rand" name="difficulty" onclick="setDifficulty(0)"><br>
-			<br><br>
+			<br>
 			
 			<h2>autoselect mode</h2>
 			<label for="autosel-letter">Color</label>
@@ -52,6 +55,7 @@
 			<input type="radio" id="autosel-number" name="autoselect" onclick="setAutosel('n')"><br>
 			<label for="autosel-off">Neither</label>
 			<input type="radio" id="autosel-off" name="autoselect" onclick="setAutosel('x')"><br>
+			<br>
 		</div>
 		
 		<div id="left-side" class="main-element">

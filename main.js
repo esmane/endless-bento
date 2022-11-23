@@ -11,6 +11,7 @@ var isDarkBackground = false;
 var playerGrid;
 var solutionGrid;
 var clues = [];
+var puzzleId = 0;
 
 var selectedLetter = 'a';
 var selectedNumber = '1';
@@ -42,5 +43,5 @@ window.onload = function()
 	}
 	
 	// generate a new puzzle
-	generatePuzzleById(2);
+	newPuzzle();
 }
