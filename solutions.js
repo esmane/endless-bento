@@ -509,7 +509,7 @@ function puzzle18()
 		
 	clues[1] = [
 		["d-4"],
-		["f"]];
+		["d"]];
 		
 	clues[2] = [
 		["d"],
@@ -528,7 +528,7 @@ function puzzle18()
 		["d-6", "x"]];
 		
 	clues[6] = [
-		["4", "5"]];
+		["4", "6"]];
 }
 
 function puzzle19()
