@@ -3,7 +3,7 @@ const GRID_SIZE_W = 3;
 const GRID_SIZE_H = 3;
 
 // game settings
-var difficulty = 0;		// 0 for random, 1 for easy, 2 for hard
+var difficulty = 0;	// 0 for random, 1 for easy, 2 for hard
 var autoSelect = 'n';	// n for number, l for letter, x for neither
 var isDarkBackground = false;
 
@@ -37,6 +37,7 @@ window.onload = function()
 	if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)
 	{
 		document.getElementById("dark-background-option").checked = true;
+		isDarkBackground = true;
 	}
 	else
 	{
