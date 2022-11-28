@@ -2,8 +2,8 @@ body {
 	margin: 0;
 	padding: 0;
 	top: 0;
-    font-family: Helvetica Neue, Arial, sans-serif;
-    text-align: center;
+	font-family: Helvetica Neue, Arial, sans-serif;
+	text-align: center;
 	background-color: #baffee;
 }
 
@@ -119,7 +119,7 @@ h2 {
 #header-right {
 }
 
-.ui-button{
+.ui-button {
 	font-family: Helvetica Neue, Arial, sans-serif;
 	background-color: transparent;
 	display: inline-block;
@@ -131,7 +131,7 @@ h2 {
 	transition: all 0.2s;
 }
 
-.ui-button:hover{
+.ui-button:hover {
 	color: #000000;
 	background-color: #ddaa55;
 }
@@ -156,6 +156,6 @@ h2 {
 	}
 	
 	.ui-button {
-		color: #000000;
+		color: #ffffff;
 	}
 }
