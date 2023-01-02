@@ -49,7 +49,8 @@ function setTile(x, y)
 	
 	if(equal(playerGrid, solutionGrid))
 	{
-		alert("Congratulations! The puzzle is completely solved.");
+		// delay the alert slightly so that we can see the completed puzzle on chrome
+		setTimeout(alert("Congratulations! The puzzle is completely solved."), 10);
 		newPuzzle();
 	}
 	else
