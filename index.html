@@ -1,134 +1,100 @@
 <!DOCTYPE html>
 
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<title>arrange the night away</title>
-		
-		<link rel="stylesheet" href="styles.css">
-		<script src="main.js"></script>
-		<script src="grid.js"></script>
-		<script src="buttons.js"></script>
-		<script src="clues.js"></script>
-		<script src="solutions.js"></script>
-		<script src="generate.js"></script>
-		<script src="menu.js"></script>
-	</head>
-	
-	<body>
-		<div id="header">
-			<div id="header-center">
-				<h1 id="main-header">endless bento</h1>
-			</div>
-			<div id="header-right">
-				<button id="menu-button" class="ui-button" onclick="openMenu()">
-					menu
-				</button>
-				<button id="restart-button" class="ui-button" onclick="newPuzzle()">
-					new puzzle
-				</button>
-			</div>
-		</div>
-		<br>
-		
-		<div id="menu">
-			<h2>colors</h2>
-			<label for="dark-background-option">dark background</label>
-			<input type="checkbox" id="dark-background-option" onchange="setBackground()">
-			<br><br>
-			
-			<h2>difficulty</h2>	
-			<label for="difficulty-jr">Junior</label>
-			<input type="radio" id="difficulty-jr" name="difficulty" onclick="setDifficulty(1)"><br>
-			<label for="difficulty-sr">Senior</label>
-			<input type="radio" id="difficulty-sr" name="difficulty" onclick="setDifficulty(2)"><br>
-			<label for="difficulty-rand">Random</label>
-			<input type="radio" id="difficulty-rand" name="difficulty" onclick="setDifficulty(0)"><br>
-			<br>
-			
-			<h2>autoselect mode</h2>
-			<label for="autosel-letter">Color</label>
-			<input type="radio" id="autosel-letter" name="autoselect" onclick="setAutosel('l')"><br>
-			<label for="autosel-number">Shape</label>
-			<input type="radio" id="autosel-number" name="autoselect" onclick="setAutosel('n')"><br>
-			<label for="autosel-off">Neither</label>
-			<input type="radio" id="autosel-off" name="autoselect" onclick="setAutosel('x')"><br>
-			<br>
-		</div>
-		
-		<div id="left-side" class="main-element">
-			<div id="clues" class="clue-block">
-				<!-- clues will go here -->
-			</div>
-		</div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<div id="right-side" class="main-element">
-			<div id="grid" oncontextmenu="return false;">
-				<div class="grid-row">
-					<div class="grid-item">
-						<img id="0-0" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(0, 0)" oncontextmenu="clearTile(0, 0)">
-					</div>
-					<div class="grid-item">
-						<img id="0-1" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(0, 1)" oncontextmenu="clearTile(0, 1)">
-					</div>
-					<div class="grid-item">
-						<img id="0-2" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(0, 2)" oncontextmenu="clearTile(0, 2)">
-					</div>
-				</div>
-				
-				<div class="grid-row">
-					<div class="grid-item">
-						<img id="1-0" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(1, 0)" oncontextmenu="clearTile(1, 0)">
-					</div>
-					<div class="grid-item">
-						<img id="1-1" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(1, 1)" oncontextmenu="clearTile(1, 1)">
-					</div>
-					<div class="grid-item">
-						<img id="1-2" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(1, 2)" oncontextmenu="clearTile(1, 2)">
-					</div>
-				</div>
-				
-				<div class="grid-row">
-					<div class="grid-item">
-						<img id="2-0" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(2, 0)" oncontextmenu="clearTile(2, 0)">
-					</div>
-					<div class="grid-item">
-						<img id="2-1" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(2, 1)" oncontextmenu="clearTile(2, 1)">
-					</div>
-					<div class="grid-item">
-						<img id="2-2" class="tile-100" src="./tiles/x-x.png" alt="tile" onclick="setTile(2, 2)" oncontextmenu="clearTile(2, 2)">
-					</div>
-				</div>
-			</div>
-			<br>
-			
-			<div id="buttons">
-				<button id="a" class="game-button" onclick="setLetter('a')">
-					<img class="tile-50" src="./tiles/a.png" alt="a">
-				</button>
-				<button id="b" class="game-button" onclick="setLetter('b')">
-					<img class="tile-50" src="./tiles/b.png" alt="b">
-				</button>
-				<button id="c" class="game-button" onclick="setLetter('c')">
-					<img class="tile-50" src="./tiles/c.png" alt="c">
-				</button>
-				&nbsp;
-				<button id="1" class="game-button" onclick="setNumber('1')">
-					<img class="tile-50" src="./tiles/1.png" alt="1">
-				</button>
-				<button id="2" class="game-button" onclick="setNumber('2')">
-					<img class="tile-50" src="./tiles/2.png" alt="2">
-				</button>
-				<button id="3" class="game-button" onclick="setNumber('3')">
-					<img class="tile-50" src="./tiles/3.png" alt="3">
-				</button>
-				&nbsp;
-				<button id="x" class="game-button" onclick="setDelete()">
-					<img class="tile-50" src="./tiles/x.png" alt="x">
-				</button>
-			</div>
-		</div>
-	</body>
+        <title>arrange the night away</title>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="main.js"></script>
+        <script src="grid.js"></script>
+        <script src="buttons.js"></script>
+        <script src="clues.js"></script>
+        <script src="solutions.js"></script>
+        <script src="generate.js"></script>
+        <script src="menu.js"></script>
+    </head>
+
+    <body>
+        <div id="header">
+            <div id="header-center">
+                <h1 id="main-header">endless bento</h1>
+            </div>
+            <div id="header-right">
+                <button id="menu-button" class="ui-button" onclick="openMenu()">
+                    menu
+                </button>
+                <button id="restart-button" class="ui-button" onclick="newPuzzle()">
+                    new puzzle
+                </button>
+            </div>
+        </div>
+        <br>
+
+        <div id="menu">
+            <h2>colors</h2>
+            <label for="dark-background-option">dark background</label>
+            <input type="checkbox" id="dark-background-option" onchange="setBackground()">
+            <br><br>
+
+            <h2>difficulty</h2>
+            <label for="difficulty-jr">Junior</label>
+            <input type="radio" id="difficulty-jr" name="difficulty" onclick="setDifficulty(1)"><br>
+            <label for="difficulty-sr">Senior</label>
+            <input type="radio" id="difficulty-sr" name="difficulty" onclick="setDifficulty(2)"><br>
+            <label for="difficulty-rand">Random</label>
+            <input type="radio" id="difficulty-rand" name="difficulty" onclick="setDifficulty(0)"><br>
+            <br>
+
+            <h2>autoselect mode</h2>
+            <label for="autosel-letter">Color</label>
+            <input type="radio" id="autosel-letter" name="autoselect" onclick="setAutosel('l')"><br>
+            <label for="autosel-number">Shape</label>
+            <input type="radio" id="autosel-number" name="autoselect" onclick="setAutosel('n')"><br>
+            <label for="autosel-off">Neither</label>
+            <input type="radio" id="autosel-off" name="autoselect" onclick="setAutosel('x')"><br>
+            <br>
+        </div>
+
+        <div id="left-side" class="main-element">
+            <div id="clues" class="clue-block">
+                <!-- clues will go here -->
+            </div>
+        </div>
+
+        <div id="right-side" class="main-element">
+            <div id="grid" oncontextmenu="return false;">
+                <!-- grid will go here -->
+            </div>
+            <br>
+
+            <div id="buttons">
+                <button id="a" class="game-button" onclick="setLetter('a')">
+                    <img class="tile-50" src="./tiles/a.png" alt="a">
+                </button>
+                <button id="b" class="game-button" onclick="setLetter('b')">
+                    <img class="tile-50" src="./tiles/b.png" alt="b">
+                </button>
+                <button id="c" class="game-button" onclick="setLetter('c')">
+                    <img class="tile-50" src="./tiles/c.png" alt="c">
+                </button>
+                &nbsp;
+                <button id="1" class="game-button" onclick="setNumber('1')">
+                    <img class="tile-50" src="./tiles/1.png" alt="1">
+                </button>
+                <button id="2" class="game-button" onclick="setNumber('2')">
+                    <img class="tile-50" src="./tiles/2.png" alt="2">
+                </button>
+                <button id="3" class="game-button" onclick="setNumber('3')">
+                    <img class="tile-50" src="./tiles/3.png" alt="3">
+                </button>
+                &nbsp;
+                <button id="x" class="game-button" onclick="setDelete()">
+                    <img class="tile-50" src="./tiles/x.png" alt="x">
+                </button>
+            </div>
+        </div>
+    </body>
 </html>
