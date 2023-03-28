@@ -10,7 +10,7 @@ function createEmptyGrid()
             toAppend += i;
             toAppend += "-";
             toAppend += j;
-            toAppend += "'class='tile-100' src='./tiles/x-x.png' alt='tile' onclick='setTile(";
+            toAppend += "'class='tile-100' src='./tiles/x-x.png' alt='x-x' onclick='setTile(";
             toAppend += i;
             toAppend += ", ";
             toAppend += j;
@@ -18,7 +18,7 @@ function createEmptyGrid()
             toAppend += i;
             toAppend += ", ";
             toAppend += j;
-            toAppend += ")'></div>";
+            toAppend += ")'></div>&nbsp;";
         }
         toAppend += "</div>";
     }
@@ -32,29 +32,29 @@ function createButtons()
     var toAppend = "";
     for(let i = 0; i < GRID_SIZE_W; i++)
     {
-        toAppend += "<button id='l-";
+        toAppend += "<button id='c-";
         toAppend += i;
-        toAppend += "' class='game-button' onclick='setLetter(";
+        toAppend += "' class='game-button' onclick=\"setColor('";
         toAppend += i;
-        toAppend += ")'><img class='tile-50' src='./tiles/'l-";
+        toAppend += "')\"><img class='tile-50' src='./tiles/";
         toAppend += i;
-        toAppend += "'.png' alt='l-";
+        toAppend += "-x.png' alt='";
         toAppend += i;
-        toAppend += "'></button>";
+        toAppend += "-x'></button>&nbsp;";
     }
     toAppend += "&nbsp;";
     for(let i = 0; i < GRID_SIZE_H; i++)
     {
-        toAppend += "<button id='n-";
+        toAppend += "<button id='s-";
         toAppend += i;
-        toAppend += "' class='game-button' onclick='setNumber(";
+        toAppend += "' class='game-button' onclick=\"setShape('";
         toAppend += i;
-        toAppend += ")'><img class='tile-50' src='./tiles/'n-";
+        toAppend += "')\"><img class='tile-50' src='./tiles/x-";
         toAppend += i;
-        toAppend += "'.png' alt='n-";
+        toAppend += ".png' alt='x-";
         toAppend += i;
-        toAppend += "'></button>";
+        toAppend += "'></button>&nbsp;";
     }
-    toAppend += "&nbsp;<button id='x' class='game-button' onclick='setDelete()'><img class='tile-50' src='./tiles/x.png' alt='x'></button>";
+    toAppend += "&nbsp;<button id='x' class='game-button' onclick='setDelete()'><img class='tile-50' src='./tiles/delete.png' alt='x'></button>";
     document.getElementById("buttons").innerHTML = toAppend;
 }

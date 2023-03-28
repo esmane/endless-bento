@@ -85,7 +85,7 @@ h2 {
 .game-button {
 	background: #b1633e;
 	border: none;
-	
+
 	width: 50px;
 	height: 50px;
 	padding: 0;
@@ -95,7 +95,7 @@ h2 {
 .selected-game-button {
 	background: #ff77dd;
 	border: none;
-	
+
 	width: 50px;
 	height: 50px;
 	padding: 0;
@@ -112,7 +112,7 @@ h2 {
 
 
 /* menu */
-#menu {  
+#menu {
 	display: none;
 	overflow-x: hidden;
 }
@@ -151,11 +151,11 @@ h2 {
 		background-color: #253330;
 		color: #ffffff;
 	}
-	
+
 	#header {
 		background-color: #131918;
 	}
-	
+
 	.ui-button {
 		color: #ffffff;
 	}
