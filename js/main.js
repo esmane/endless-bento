@@ -1,6 +1,7 @@
 // global puzzle settings
-var GRID_SIZE_W = 5;    // also, the number of colors
-var GRID_SIZE_H = 5;    // also, the number of shapes
+var GRID_SIZE_W = 2;    // also, the number of colors
+var GRID_SIZE_H = 2;    // also, the number of shapes
+var DIFFICULTY = 1;     // 0 for jr, 1 for sr, 2 for master
 
 // global interface settings
 var globalSettingAutoSelect = "s"    // c for color, s for shape, n for none
@@ -19,11 +20,12 @@ var globalClues = [];
 
 window.onload = function()
 {
-    createEmptyGrid();
-    createButtons();
+    setupGrid();
+    setupButtons();
 
     setColor('0');
     setShape('0');
 
     clearPlayerGrid();
+    generatePuzzle();
 }

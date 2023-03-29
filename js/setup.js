@@ -1,7 +1,7 @@
 // these messy functions setup the html based on the size of the puzzle
 // we create a grid of any size, and create the appropriate number of buttons for all the tiles the grid can take
 
-function createEmptyGrid()
+function setupGrid()
 {
     var toAppend = "";
     for(let i = 0; i < GRID_SIZE_H; i++)
@@ -33,7 +33,7 @@ function createEmptyGrid()
 }
 
 
-function createButtons()
+function setupButtons()
 {
     var toAppend = "";
     for(let i = 0; i < GRID_SIZE_W; i++)
