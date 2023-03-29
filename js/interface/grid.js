@@ -3,7 +3,7 @@
 // we also display this grid on the screen using a grid of divs and images in html
 // these functions keep the two in sync as well as controlling what happens when tiles are clicked
 
-// clears the grid array and also resets the
+// clears the grid array and also resets the visible tiles to all blank
 function clearPlayerGrid()
 {
     globalPlayerGrid = [];
