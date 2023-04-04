@@ -6,7 +6,7 @@
 // clears the grid array and also resets the visible tiles to all blank
 function clearPlayerGrid()
 {
-    globalPlayerGrid = [];
+    globalPlayerGrid = initArray([GRID_SIZE_W, GRID_SIZE_H]);
     for(let i = 0; i < GRID_SIZE_H; i++)
     {
         globalPlayerGrid[i] = [];
