@@ -1,6 +1,6 @@
 // global puzzle settings
-var GRID_SIZE_W = 2;    // also, the number of colors
-var GRID_SIZE_H = 2;    // also, the number of shapes
+var GRID_SIZE_W = 3;    // also, the number of colors
+var GRID_SIZE_H = 3;    // also, the number of shapes
 var DIFFICULTY = 1;     // 0 for jr, 1 for sr, 2 for master
 
 // global interface settings
