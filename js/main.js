@@ -27,5 +27,5 @@ window.onload = function()
     setShape('0');
 
     clearPlayerGrid();
-    generatePuzzle();
+    // generatePuzzle();
 }
