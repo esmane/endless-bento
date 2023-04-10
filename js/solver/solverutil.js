@@ -98,7 +98,6 @@ function solverGetShapePossibility(x, y, shape)
 }
 
 
-
 // these final three eliminate tiles from our possibilities
 function solverEliminatePossibility(x, y, tile)
 {
@@ -106,7 +105,9 @@ function solverEliminatePossibility(x, y, tile)
     {
         if(solverPossibilityGrid[x][y][i] === tile)
         {
-            solverPossibilityGrid[x][y].splice(i, 1);
+            // we set it to an empty string rather than deleting the element. this is so our array stays a constant size.
+            // because our seeking functions look for the specific string this does not affect their operation in any way.
+            solverPossibilityGrid[x][y][i] = "";
             break;
         }
     }
@@ -118,7 +119,7 @@ function SolverEliminateColor(x, y, color)
     {
         if(solverPossibilityGrid[x][y][i].charAt(0) === color)
         {
-            solverPossibilityGrid[x][y].splice(i, 1);
+            solverPossibilityGrid[x][y][i] = "";
         }
     }
 }
@@ -129,7 +130,7 @@ function SolverEliminateShape(x, y, shape)
     {
         if(solverPossibilityGrid[x][y][i].charAt(2) === shape)
         {
-            solverPossibilityGrid[x][y].splice(i, 1);
+            solverPossibilityGrid[x][y][i] = "";
         }
     }
 }
