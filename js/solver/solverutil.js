@@ -156,21 +156,22 @@ function solverSetSquare(x, y, tile)
 
 function solverSetSquareColor(x, y, color)
 {
-    for(let i = 0; i < GRID_SIZE_W; i++)
+    for(let i = solverPossibilityGrid[x][y].length - 1; i >= 0; i--)
     {
-        if(i != color)
+        if(solverPossibilityGrid[x][y][i].charAt(0) != color)
         {
-            solverEliminateColor(x, y, i);
+            solverPossibilityGrid[x][y].splice(i, 1);
         }
     }
 }
 
 function solverSetSquareShape(x, y, shape)
 {
-    // then we want to make it the only possibility for the given tile
-    solverPossibilityGrid[x][y] = [];
-    for(let i = 0; i < GRID_SIZE_H; i++)
+    for(let i = solverPossibilityGrid[x][y].length - 1; i >= 0; i--)
     {
-        solverPossibilityGrid[x][y][i] = i + '-' + shape;
+        if(solverPossibilityGrid[x][y][i].charAt(2) != shape)
+        {
+            solverPossibilityGrid[x][y].splice(i, 1);
+        }
     }
 }

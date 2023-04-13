@@ -35,6 +35,55 @@ function initSolver()
 }
 
 
+// the main solver function
+function solverEliminateClues(clueNo)
+{
+    var possibleLocations = solverCheckClueLocations(clueNo);
+    
+    // if there is only one possible spot, absolute eliminate the clue
+    if(possibleLocations.length === 1)
+    {
+        // x and y refer to the clue's location in the grid
+        // because this is absolute elimination, there is only one possible location for the clue.
+        var gridX = Number(possibleLocations[0].charAt(0));
+        var gridY = Number(possibleLocations[0].charAt(2));
+        
+        // this repeats
+        for(let clueX = 0; clueX < globalClues[clueNo].length; clueX++)
+        {
+            _nextSquareEliminate:
+            for(let clueY = 0; clueY < globalClues[clueNo][0].length; clueY++)
+            {
+                // for every tile of the clue, let's do some elimination
+                // what happens next depends on what the square of the clue is
+                if(globalClues[clueNo][clueX][clueY] === "x-x")
+                {
+                    continue _nextSquareEliminate;
+                }
+                else if(globalClues[clueNo][clueX][clueY].charAt(0) === 'x')
+                {
+                    // a clue that tells us shape only
+                    solverSetSquareShape(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY].charAt(2));
+                }
+                else if(globalClues[clueNo][clueX][clueY].charAt(2) === 'x')
+                {
+                    // a clue that tells us color only
+                    solverSetSquareColor(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY].charAt(0));
+                }
+                else
+                {
+                    solverSetSquare(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY]);
+                }
+            }
+        }
+    }
+    else
+    {
+        // relative elimination           
+    }
+}
+
+
 // this tells us where a clue can fit into the grid
 function solverCheckClueLocations(clueNo)
 {
@@ -59,14 +108,14 @@ function solverCheckClueLocations(clueNo)
                     // what happens next depends on what the square of the clue is
                     if(globalClues[clueNo][clueX][clueY] === "x-x")
                     {
-                        break _nextSquare;
+                        continue _nextSquare;
                     }
                     else if(globalClues[clueNo][clueX][clueY].charAt(0) === 'x')
                     {
                         // a clue that tells us shape only
                         if(solverIsShapePossibility(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY].charAt(2)))
                         {
-                            break _nextSquare;
+                            continue _nextSquare;
                         }
                         else
                         {
@@ -79,7 +128,7 @@ function solverCheckClueLocations(clueNo)
                         // a clue that tells us shape only
                         if(solverIsColorPossibility(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY].charAt(0)))
                         {
-                            break _nextSquare;
+                            continue _nextSquare;
                         }
                         else
                         {
@@ -87,9 +136,9 @@ function solverCheckClueLocations(clueNo)
                             break _clueCheckLoop;
                         }
                     }
-                    else if(solverIsPossibility(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY])
+                    else if(solverIsPossibility(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY]))
                     {
-                        break _nextSquare;
+                        continue _nextSquare;
                     }
                     else
                     {
@@ -101,7 +150,7 @@ function solverCheckClueLocations(clueNo)
             
             if(fits)
             {
-                possibleLocations.push(clueX + ',' + clueY);
+                possibleLocations.push(gridX + ',' + gridY);
             }
         }
     }
