@@ -26,7 +26,10 @@ function initSolver()
         for(let j = 0; j < GRID_SIZE_H; j++)
         {
             solverSolvedGrid[i][j] = "x-x";
-            solverPossibilityGrid[i][j] = ALL_POSSIBILITIES;
+            for(let k = 0; k < GRID_SIZE_W * GRID_SIZE_H; k++)
+            {
+                solverPossibilityGrid[i][j][k] = ALL_POSSIBILITIES[k];
+            }
         }
     }
 }
