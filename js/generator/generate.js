@@ -20,6 +20,8 @@ function generatePuzzle()
     // fill the grid and clear clues
     generateFillGrid();
     globalClues = [];
+    initSolver();
+    clearPlayerGrid();
     
     
     // create the first clue    
@@ -122,7 +124,6 @@ function generatePuzzle()
     
     // the rest of the clues are generated in a loop
     // the random constants will be adjusted with testing to generate more fun puzzles
-    initSolver();
     _l:
     while(!solverStep(0))
     {
@@ -169,8 +170,7 @@ function generatePuzzle()
         // safety
         if(globalClues.length > 10)
         {
-            break _l;
-            return -1;
+            generatePuzzle();
         }
     }
     
