@@ -7,10 +7,10 @@
 function clearPlayerGrid()
 {
     globalPlayerGrid = initArray([GRID_SIZE_W, GRID_SIZE_H]);
-    for(let i = 0; i < GRID_SIZE_H; i++)
+    for(let i = 0; i < GRID_SIZE_W; i++)
     {
         globalPlayerGrid[i] = [];
-        for(let j = 0; j < GRID_SIZE_W; j++)
+        for(let j = 0; j < GRID_SIZE_H; j++)
         {
             globalPlayerGrid[i][j] = "x-x";
             document.getElementById(i + '-' + j).src = "./tiles/" + globalPlayerGrid[i][j] + ".png";
