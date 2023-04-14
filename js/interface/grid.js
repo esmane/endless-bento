@@ -45,7 +45,15 @@ function setTile(x, y)
 	document.getElementById(x + '-' + y).src = "./tiles/" + globalPlayerGrid[x][y] + ".png";
 	document.getElementById(x + '-' + y).alt = globalPlayerGrid[x][y];
 
+    // check if the puzzle has been solved
+    if(equal(globalPlayerGrid, globalSolutionGrid))
+	{
+		// delay the alert slightly so that we can see the completed puzzle on chrome
+		setTimeout(alert("Congratulations! The puzzle is completely solved."), 10);
+		generatePuzzle();
+	}
 
+    // at this point we are done setting the grid. the rest of this function is cycling through the selection options
 	// cycle through the different tile selections depending on the setting and if we are currently on delete (don't cycle delete)
 	if(globalSelectedColor != 'x')
 	{
@@ -84,6 +92,7 @@ function setTile(x, y)
         }
 	}
 }
+
 
 // clears a tile
 function clearTile(x, y)

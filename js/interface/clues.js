@@ -18,6 +18,7 @@ function drawClue(clue)
     document.getElementById("clues").innerHTML += toAppend;
 }
 
+
 function clearClues()
 {
     document.getElementById("clues").innerHTML = "";
