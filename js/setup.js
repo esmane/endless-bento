@@ -4,10 +4,10 @@
 function setupGrid()
 {
     var toAppend = "";
-    for(let i = 0; i < GRID_SIZE_H; i++)
+    for(let i = 0; i < GRID_SIZE_W; i++)
     {
         toAppend += "<div class='grid-row'>";
-        for(let j = 0; j < GRID_SIZE_W; j++)
+        for(let j = 0; j < GRID_SIZE_H; j++)
         {
             toAppend += "<div class='grid-item'><img id='";
             toAppend += i;
