@@ -33,8 +33,10 @@ function setupGrid()
 }
 
 
+
 function setupButtons()
-{
+{     
+    // html time
     var toAppend = "";
     for(let i = 0; i < GRID_SIZE_W; i++)
     {
@@ -63,4 +65,28 @@ function setupButtons()
     }
     toAppend += "&nbsp;<button id='x' class='game-button' onclick='setDelete()'><img class='tile-50' src='./tiles/delete.png' alt='x'></button>";
     document.getElementById("buttons").innerHTML = toAppend;
+    
+    
+    // if the currently selected buttons are buttons that are about to disappear, set them back to the first option
+    if(Number(globalSelectedColor) >= GRID_SIZE_W)
+    {
+        globalSelectedColor = '0';
+        globalOldSelectedColor = '0';
+        setColor('0');
+    }
+    else
+    {
+        setColor(globalSelectedColor);
+    }
+    
+    if(Number(globalSelectedShape) >= GRID_SIZE_H)
+    {
+        globalSelectedShape = '0';
+        globalOldSelectedShape = '0';
+        setShape('0');
+    }
+    else
+    {
+        setShape(globalSelectedShape);
+    }
 }

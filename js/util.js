@@ -20,3 +20,29 @@ function initArray(dimensions)
         return "";
     }
 }
+
+
+// this function checks if two arrays are equal to each other.
+// mainly used to check if the puzzle has been solved.
+// source: https://stackoverflow.com/questions/27102507/assert-if-two-2d-arrays-are-equal
+function equal(array1, array2)
+{
+    if(!Array.isArray(array1) && !Array.isArray(array2))
+    {
+        return array1 === array2;
+    }
+
+    if(array1.length !== array2.length)
+    {
+        return false;
+    }
+
+    for(var i = 0, len = array1.length; i < len; i++)
+    {
+        if(!equal(array1[i], array2[i]))
+        {
+            return false;
+        }
+    }
+    return true;
+}
