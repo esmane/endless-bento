@@ -6,6 +6,33 @@
 // we repeat these two steps until the puzzle has been solved and the full solution grid has been filled in
 function generatePuzzle()
 {
+    // first, let's see what the grid width and height are
+    // not a typo, width and height are reversed for some reason
+    GRID_SIZE_H = Math.round(document.getElementById("size-w").value);
+    GRID_SIZE_W = Math.round(document.getElementById("size-h").value);
+    
+    if(GRID_SIZE_H < 2)
+    {
+        GRID_SIZE_H = 2;
+        document.getElementById("size-w").value = 2;
+    }
+    else if(GRID_SIZE_H > 5)
+    {
+        GRID_SIZE_H = 5;
+        document.getElementById("size-w").value = 5;
+    }
+    
+    if(GRID_SIZE_W < 2)
+    {
+        GRID_SIZE_W = 2;
+        document.getElementById("size-h").value = 2;
+    }
+    else if(GRID_SIZE_H > 5)
+    {
+        GRID_SIZE_H = 5;
+        document.getElementById("size-w").value = 5;
+    }
+    
     var clueWidth = GRID_SIZE_W;
     var clueHeight = GRID_SIZE_H;
     
@@ -88,7 +115,7 @@ function generatePuzzle()
         generateClue(clueWidth, clueHeight);
         
         // if we've generated more than 10 clues and the puzzle isn't solveable, chances are it is a bad puzzle. let's try again
-        if(globalClues.length >= 10)
+        if(globalClues.length >= Math.max(GRID_SIZE_W, GRID_SIZE_H) * 2)
         {
             generatePuzzle();
         }
