@@ -150,15 +150,12 @@ function solverEliminateClues(clueNo)
             }
         }
     }
-    else
+    // we don't do relative elimination on easy mode, this requires easy mode puzzles to be solvable exclusively by absolutely placing clues.
+    else if(DIFFICULTY != 0)
     {
         // relative elimination
         // unlike with absolute elimination, we can only do relative elimination some of the time
-        // we can only do relative elimination on clues that tell us both the color and shape of certain squares
-        // we can also do some weird things if we have a clue that contains all tiles of a certain color or shape
-        // for example in a 3x3 puzzle a clue with three 0-x squares
-        // however these require some special programming to detect because we need to search for them and so we are going to ignore this method of solving for now
-        // let's begin. first, we need to see if the clue contains any square that tell us both
+        // we can only do relative elimination on clues that tell us both the color and shape of certain squares        
         for(let clueX = 0; clueX < globalClues[clueNo].length; clueX++)
         {
             for(let clueY = 0; clueY < globalClues[clueNo][0].length; clueY++)
@@ -181,8 +178,8 @@ function solverEliminateClues(clueNo)
         // this means we need to try for every previously determined spot that the clue could fit
         for(let i = 0; i < possibleLocations.length; i++)
         {
-            gridX = Number(possibleLocations[0].charAt(0));
-            gridY = Number(possibleLocations[0].charAt(2));
+            gridX = Number(possibleLocations[i].charAt(0));
+            gridY = Number(possibleLocations[i].charAt(2));
             
             // this repeats
             for(let clueX = 0; clueX < globalClues[clueNo].length; clueX++)
