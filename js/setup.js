@@ -7,7 +7,7 @@ const SCALE_ROOT = 3;
 // this function creates the grid
 function setupGrid()
 {
-    var scale = 100 * (3 / Math.max(GRID_SIZE_W, GRID_SIZE_H));
+    var scale = Math.min(100 * (3 / Math.max(GRID_SIZE_W, GRID_SIZE_H)), 100);
     var toAppend = "";
     for(let i = 0; i < GRID_SIZE_W; i++)
     {
