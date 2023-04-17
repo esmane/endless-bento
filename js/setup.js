@@ -1,8 +1,13 @@
 // these messy functions setup the html based on the size of the puzzle
 // we create a grid of any size, and create the appropriate number of buttons for all the tiles the grid can take
 
+// scale constant
+const SCALE_ROOT = 3;
+
+// this function creates the grid
 function setupGrid()
 {
+    var scale = 100 * (3 / Math.max(GRID_SIZE_W, GRID_SIZE_H));
     var toAppend = "";
     for(let i = 0; i < GRID_SIZE_W; i++)
     {
@@ -13,7 +18,7 @@ function setupGrid()
             toAppend += i;
             toAppend += "-";
             toAppend += j;
-            toAppend += "'class='tile-100' src='./tiles/x-x.png' alt='x-x' onclick='setTile(";
+            toAppend += "' class='tile-100' src='./tiles/x-x.png' alt='x-x' onclick='setTile(";
             toAppend += i;
             toAppend += ", ";
             toAppend += j;
@@ -21,7 +26,11 @@ function setupGrid()
             toAppend += i;
             toAppend += ", ";
             toAppend += j;
-            toAppend += ")'></div>&nbsp;";
+            toAppend += ")' style='width: ";
+            toAppend += scale;
+            toAppend += "px; height: ";
+            toAppend += scale;
+            toAppend += "px;'></div>&nbsp;";
         }
         toAppend += "</div>";
     }
@@ -33,7 +42,7 @@ function setupGrid()
 }
 
 
-
+// this function creates the buttons
 function setupButtons()
 {     
     // html time
