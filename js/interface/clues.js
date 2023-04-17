@@ -1,6 +1,6 @@
 function drawClue(clue)
 {
-    var scale = 50 * (3 / Math.max(GRID_SIZE_W, GRID_SIZE_H));
+    var scale = Math.min(50 * (3 / Math.max(GRID_SIZE_W, GRID_SIZE_H)), 50);
     var toAppend = "<div class='clue-grid'>";
     for(let i = 0; i < clue.length; i++)
     {
