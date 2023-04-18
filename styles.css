@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	top: 0;
-	font-family: Helvetica Neue, Arial, sans-serif;
+	font-family: "Helvetica Neue", Arial, sans-serif;
 	text-align: center;
 	background-color: #baffee;
 }
@@ -12,20 +12,34 @@ h1 {
 	padding: 5px;
 }
 
+p {
+	margin: 12px;
+}
+
+h4 {
+	margin: 4px;
+}
+
 h3 {
-	margin: 2px;
+	margin: 3px;
 }
 
 h2 {
 	margin: 5px;
 }
 
+a:link, a:visited {
+    color: #ff77dd;
+    text-decoration: underline;
+}
+
 #header {
 	width: 100%;
 	background-color: #a9eedd;
 	top: 0;
-	padding: 0;
+	padding: 0.3em;
 }
+
 
 /* main */
 .main-element {
@@ -34,10 +48,11 @@ h2 {
 	padding: 20px;
 }
 
+
 /* clues */
 .clue-block {
 	display: inline-block;
-	max-width: 30vw;
+	max-width: 40vw;
 }
 
 .clue-grid {
@@ -81,6 +96,7 @@ h2 {
 	height: 50px;
 }
 
+
 /* buttons */
 .game-button {
 	background: #b1633e;
@@ -111,21 +127,20 @@ h2 {
 }
 
 
+
 /* menu */
-#menu {
+.menu-class {
 	display: none;
 	overflow-x: hidden;
-}
-
-#header-right {
+	max-width: 650px;
 }
 
 .ui-button {
-	font-family: Helvetica Neue, Arial, sans-serif;
+	font-family: "Helvetica Neue", Arial, sans-serif;
 	background-color: transparent;
 	display: inline-block;
 	border: 0.1em solid;
-	margin: 0 0.3em 0.3em 0;
+	margin: 0.2em;
 	box-sizing: border-box;
 	text-decoration: none;
 	text-align: center;
@@ -133,15 +148,33 @@ h2 {
 }
 
 .ui-button:hover {
-	color: #000000;
 	background-color: #ddaa55;
 }
 
+.selected-ui-button {
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	color: #000000;
+	background-color: #ff77dd;
+	display: inline-block;
+	border: 0.1em solid;
+	margin: 0.2em;
+	box-sizing: border-box;
+	text-decoration: none;
+	text-align: center;
+	transition: all 0.2s;
+}
+
+.selected-ui-button:hover {
+	background: #ffeeee;
+}
+
+
+
 /* narrow screen */
-@media screen and (max-aspect-ratio: 3/4) {
+@media screen and (max-aspect-ratio: 1/1) {
 	.clue-block {
 		display: inline-block;
-		max-width: 80vw;
+		max-width: 95vw;
 	}
 }
 
@@ -157,6 +190,10 @@ h2 {
 	}
 
 	.ui-button {
+		color: #ffffff;
+	}
+	
+	.selected-ui-button {
 		color: #ffffff;
 	}
 }

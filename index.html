@@ -21,13 +21,23 @@
     </head>
 
     <body>
+        <!-- header -->
         <div id="header">
             <div id="header-center">
                 <h1 id="main-header">endless bento</h1>
             </div>
             <div id="header-right">
-                <button id="menu-button" class="ui-button" onclick="openMenu()">
-                    menu
+                <button id="play-button" class="selected-ui-button" onclick="openMenu('n')">
+                    play
+                </button>
+                <button id="menu-button" class="ui-button" onclick="openMenu('s')">
+                    settings
+                </button>
+                <button id="help-button" class="ui-button" onclick="openMenu('h')">
+                    help
+                </button>
+                <button id="about-button" class="ui-button" onclick="openMenu('a')">
+                    about
                 </button>
                 <button id="restart-button" class="ui-button" onclick="generatePuzzle()">
                     new puzzle
@@ -36,13 +46,17 @@
         </div>
         <br>
 
-        <div id="menu">
-            <h2>colors</h2>
+
+
+        <!-- menus -->
+        <div id="menu" class="menu-class">
+            <h2>settings</h2><br>
+            <h3>colors</h3>
             <label for="dark-background-option">dark background</label>
             <input type="checkbox" id="dark-background-option" onchange="setBackground()">
             <br><br>
 
-            <h2>difficulty</h2>
+            <h3>difficulty</h3>
             <label for="difficulty-jr">Junior</label>
             <input type="radio" id="difficulty-jr" name="difficulty" onclick="setDifficulty(0)"><br>
             <label for="difficulty-sr">Senior</label>
@@ -51,14 +65,14 @@
             <input type="radio" id="difficulty-mst" name="difficulty" onclick="setDifficulty(2)"><br>
             <br>
             
-            <h2>puzzle size</h2>
+            <h3>puzzle size</h3>
             <label for="size-w">Width</label>
             <input type="number" id="size-w" name="size" min="2" max="5"><br>
             <label for="size-h">Height</label>
             <input type="number" id="size-h" name="size" min="2" max="5"><br>
             <br>
 
-            <h2>autoselect mode</h2>
+            <h3>autoselect mode</h3>
             <label for="autosel-letter">Color</label>
             <input type="radio" id="autosel-letter" name="autoselect" onclick="setAutosel('c')"><br>
             <label for="autosel-number">Shape</label>
@@ -67,7 +81,29 @@
             <input type="radio" id="autosel-off" name="autoselect" onclick="setAutosel('n')"><br>
             <br>
         </div>
+        
+        
+        <div id="help" class="menu-class">
+            <h2>how to play</h2><br>
+            
+            <h3>Rules</h3>
+            <p>Your goal is to fill the grid of squares with tiles in such a way that all the clues are met and no shape-color combination appears more than once. The clues appear either to the left or on top of the grid (depending on your screen aspect ratio) and show you select portions of the solution's grid. You have to deduce where exactly in the grid these clues go.</p>
+            <p>A clue may tell you the shape of a square, the color of a square, or both. If a clue contains empty squares that means that there is a tile in that spot, but it could be anything.</p>
+            <p>For example, in a 3x3 puzzle, suppose there is a clue that has three boxes in a row, with a red circle in the leftmost square. Because we know this clue must tell us a complete row of the puzzle, we can figure out that the red circle must go in the leftmost column. If we have another clue with three boxes in a column, with a red circle in the topmost square, we can use the two clues together to figure out that the only spot the red circle could go is the top left square.</p><br>
+            
+            <h3>Controls</h3>
+            <p>You select the color and shape that you want separately using the buttons below the grid and then you can click on the grid to place the tile that you specified. Depending on the "autoselect mode" that you have set (under settings) the game may select a new color or shape automatically after you place a tile. You can delete a tile by right-clicking, and there is also a delete button in case you are playing on a touch screen. Although each shape-color combination is only going to be used once in solving the puzzle, the game does not check this for you and you can (incorrectly) place multiple of the same tile.</p>
+        </div>
+        
+        
+        <div id="about" class="menu-class">
+            <h2>about</h2>
+            <p>It's a clone of the bento puzzle minigame from <i>Nancy Drew: Shadow at the Water's Edge</i>. I haven't seen this type of puzzle anywhere else so I made a browser version that generates its own puzzles. Have fun!</p><br><br>
+        </div>
+        
+        
 
+        <!-- the game itself -->
         <div id="left-side" class="main-element">
             <div id="clues" class="clue-block">
                 <!-- clues will go here -->
@@ -77,11 +113,13 @@
         <div id="right-side" class="main-element">
             <div id="grid" oncontextmenu="return false;">
                 <!-- grid will go here -->
+                <p>generating puzzle...</p>
             </div>
             <br>
 
             <div id="buttons">
                 <!-- buttons will go here -->
+            </div>
         </div>
     </body>
 </html>
