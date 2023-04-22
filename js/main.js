@@ -19,20 +19,76 @@ var globalSolutionGrid;
 var globalClues = [];
 
 
+// main init function. runs on startup and is responsible for loading the settings and generating the first puzzle.
 window.onload = function()
 {
+    // setup the default grid and button sizes
     setupGrid();
     setupButtons();
 
     setColor('0');
     setShape('0');
+
+  
+    // now let's attempt to load the previous settings using cookies
+    // difficulty
+    var c = getCookie("difficulty");
+    DIFFICULTY = Number(c);
+    switch(DIFFICULTY)
+    {
+        case 0:
+            document.getElementById("difficulty-jr").checked = true;
+            break;
+        case 1:
+            document.getElementById("difficulty-sr").checked = true;
+            break;
+        case 2:
+            document.getElementById("difficulty-mst").checked = true;
+            break;
+    }
     
-    document.getElementById("difficulty-sr").checked = true;
-	document.getElementById("autosel-number").checked = true;
-	document.getElementById("size-w").value = 3;
-    document.getElementById("size-h").value = 3;
+    // autoselect
+    c = getCookie("autosel");
+    switch(c)
+    {
+        case 'c':
+            document.getElementById("autosel-color").checked = true;
+            break;
+            
+        case 'n':
+            document.getElementById("autosel-off").checked = true;
+            break;
+            
+        // default to shape
+        default:
+            document.getElementById("autosel-shape").checked = true;
+            break;
+    }
+	
+	// width and height
+	c = getCookie("width");
+	if(Number(c) >= 2 && Number(c) <= 5)
+	{
+	    document.getElementById("size-w").value = Number(c);
+	}
+	else
+	{
+	    document.getElementById("size-w").value = 3;
+	}
+	
+	c = getCookie("height");
+	if(Number(c) >= 2 && Number(c) <= 5)
+	{
+	    document.getElementById("size-h").value = Number(c);
+	}
+	else
+	{
+	    document.getElementById("size-h").value = 3;
+	}
     
-    if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    // dark mode
+    c = getCookie("dark-background");
+    if((window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) || c === "true")
 	{
 		document.getElementById("dark-background-option").checked = true;
 		globalIsDarkBackground = true;
@@ -41,7 +97,9 @@ window.onload = function()
 	{
 		document.getElementById("dark-background-option").checked = false;		
 	}
-
+	
+	
+    // now that we've loaded the settings, let's generate a puzzle
     clearPlayerGrid();
     generatePuzzle();
 }
