@@ -1,5 +1,7 @@
+// these functions are all about the menus. they are executed when the different menu buttons are clicked
 var menuIsOpen = 'n';   // 'n' for play, 's' for settings, 'h' for help, 'a' for about
 
+// responsible for all of the main page buttons along the top of the screen
 function openMenu(newMenu)
 {
     // first close the old menu
@@ -56,6 +58,7 @@ function openMenu(newMenu)
 }
 
 
+// when you check the dark background button
 function setBackground()
 {
     if(!globalIsDarkBackground)
@@ -88,6 +91,8 @@ function setBackground()
     }
 }
 
+
+// setting the difficulty and autoselect mode are straightforward
 function setDifficulty(x)
 {
     DIFFICULTY = x;
@@ -96,4 +101,15 @@ function setDifficulty(x)
 function setAutosel(x)
 {
     globalSettingAutoSelect = x;
+}
+
+
+// saving the settings using cookies
+function saveSettings()
+{
+    setCookie("difficulty", DIFFICULTY, 1000);
+    setCookie("dark-mode", globalIsDarkBackground, 1000);
+    setCookie("autosel", globalSettingAutoSelect, 1000);
+    setCookie("width", document.getElementById("size-w").value, 1000);
+    setCookie("height", document.getElementById("size-h").value, 1000);
 }
