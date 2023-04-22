@@ -73,38 +73,41 @@
             <br>
 
             <h3>autoselect mode</h3>
-            <label for="autosel-letter">color</label>
-            <input type="radio" id="autosel-letter" name="autoselect" onclick="setAutosel('c')"><br>
-            <label for="autosel-number">shape</label>
-            <input type="radio" id="autosel-number" name="autoselect" onclick="setAutosel('s')"><br>
-            <label for="autosel-off">neither</label>
+            <label for="autosel-color">Color</label>
+            <input type="radio" id="autosel-color" name="autoselect" onclick="setAutosel('c')"><br>
+            <label for="autosel-shape">Shape</label>
+            <input type="radio" id="autosel-shape" name="autoselect" onclick="setAutosel('s')"><br>
+            <label for="autosel-off">Neither</label>
             <input type="radio" id="autosel-off" name="autoselect" onclick="setAutosel('n')"><br>
+            <br>
+            
+            <button onclick="saveSettings()">save settings (will use cookies)</button><br>
             <br>
         </div>
         
         
         <div id="help" class="menu-class">
             <h2>how to play</h2><br>
-            
             <h3>rules</h3>
             <p>Your goal is to fill the grid of squares with tiles in such a way that all the clues are met and every tile is different (no shape-color combination appears more than once). The clues appear either to the left or on top of the grid (depending on your screen aspect ratio) and show you select portions of the solution's grid. You have to use logic to deduce where exactly in the grid these clues go.</p>
-            <p>A clue may tell you the shape of a square, the color of a square, or both. Empty squares in a clue must be part of the grid, but they could be anything.</p>
-            <p>For example, in a 3x3 puzzle, suppose there is a clue that has three boxes in a row, with a red circle in the leftmost square, and empty boxes in the other squares. Because of the empty squares, we know this clue must form a complete row of the puzzle, and from that we can figure out that the red circle must go in the leftmost column of the grid. If we have another clue with three boxes in a column and a red circle in the topmost square, we can use the two clues together to figure out that the only spot the red circle could go is the top left square. If this still doesn't make any sense I recommend doing a Junior difficulty and/or 2x2 puzzle. You should be able to figure out the techniques pretty easily.</p><br>
+            <p>A clue may tell you the shape of a square, the color of a square, or both. Empty squares in a clue must be part of the grid, but they could be anything.</p><br>
             
             <h3>controls</h3>
-            <p>Below the grid there is a row of buttons that allow you to select a color and a shape. Instead of having different buttons for every single possible tile, you must select the color and shape that you want separately using these buttons. After selecting the color and shape you want, just click in the grid to place the tile. Depending on the "autoselect mode" that you have set (under settings) the game may select a new color or shape automatically after you place a tile. You can delete a tile by right-clicking, and there is also a delete button in case you are playing on a touch screen and can't right-click. Although each shape-color combination is only going to be used once in solving the puzzle, the game does not check this for you and you can (incorrectly) place multiple of the same tile.</p><br><br>
+            <p>Below the grid there is a row of buttons that allow you to select a color and a shape. Instead of having different buttons for every single possible tile, you must select the color and shape that you want separately using these buttons. After selecting the color and shape you want, you can place tiles by clicking on the grid. Depending on the "autoselect mode" that you have set under settings the game may select a new color or shape automatically after you place a tile. You can delete a tile by right-clicking, and there is also a delete button in case you are playing on a touch screen and can't right-click. Although each shape-color combination is only going to be used once in solving the puzzle, the game does not check this for you and you can (incorrectly) place multiple of the same tile.</p><br><br>
         
             <h2>explanations for the settings</h2>
-            <p><b>dark background:</b> Self explanatory, when checked you get a dark background. If your browser is set to prefer dark pages this will default to being checked.</p>
+            <p><b>dark background:</b> Self explanatory, when this is checked you get a dark background. If your browser is set to prefer dark pages this will default to being checked.</p>
             <p><b>difficulty:</b> Also pretty self explanatory, this is how you tweak the difficulty of the generated puzzles. Note that currently there is not much difference between the levels, but that will change as I improve the generation code. Also note that this does not affect the current puzzle and a change to this setting will only apply to the next puzzle generated.</p>
             <p><b>puzzle size:</b> You can change the size of the puzzle independently of the difficulty level. Both the width and height have a maximum value of 5 and a minimum value of 2, so you can generate any size puzzle between 2x2 and 5x5. If you enter an invalid number into one of these fields it will get rounded to the nearest allowed size when the next puzzle is generated. Note that like with the last option a change here will not affect the current puzzle.</p>
-            <p><b>autoselect mode:</b> With this you can change what happens after a tile is placed. "Color" (or "shape") will cause the next color (or shape) in line to become selected automatically whenever a tile is placed. "Neither" disables this behavior and makes it so that the selected tile does not change when a tile is placed.</p><br><br>
+            <p><b>autoselect mode:</b> With this you can change what happens after a tile is placed. "Color" (or "shape") will cause the next color (or shape) in line to become selected automatically whenever a tile is placed. "Neither" disables this behavior and makes it so that the selected tile does not change when a tile is placed.</p>
+            <p><b>save settings: </b> This saves all the above settings (using cookies) so your settings will stay even when you close and reopen the page. These settings will never autosave and you must click this button every time you change the settings if you want them to save. You should also know that the cookies are set to clear 1000 days from when they are set. To reset your settings, just clear your cookies for this site.</p><br><br>
         </div>
         
         
         <div id="about" class="menu-class">
             <h2>about</h2>
-            <p>It's a clone of the bento puzzle minigame from <i>Nancy Drew: Shadow at the Water's Edge</i>. I haven't seen this type of puzzle anywhere else so I made a browser version that generates its own puzzles. Have fun!</p><br><br>
+            <p>It's a clone of the bento puzzle minigame from <i>Nancy Drew: Shadow at the Water's Edge</i>. I haven't seen this type of puzzle anywhere else so I made a browser version that generates its own puzzles. Have fun!</p>
+            <p>If you prefer the original version of this site, you can access it <a href="https://esmane.github.io/endless-bento-classic/">here</a>.</p><br><br>
         </div>
         
         
@@ -119,7 +122,7 @@
         <div id="right-side" class="main-element">
             <div id="grid" oncontextmenu="return false;">
                 <!-- grid will go here -->
-                <p>generating puzzle...</p>
+                <p>Please enable javascript or be patient while the puzzle generates.</p>
             </div>
             <br>
 
