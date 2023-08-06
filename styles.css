@@ -37,7 +37,10 @@ a:link, a:visited {
 	width: 100%;
 	background-color: #a9eedd;
 	top: 0;
-	padding: 0.3em;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 
