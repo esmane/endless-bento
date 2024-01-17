@@ -1,3 +1,7 @@
+// this array is going to keep track of how many times each tile appears in a clue.
+var generatorClueCount;
+
+
 // main puzzle generation function
 // here's basically how it works:
 // we have a two step loop that repeats until the puzzle is generated
@@ -49,6 +53,19 @@ function generatePuzzle()
     globalClues = [];
     initSolver();
     clearPlayerGrid();
+
+    // an individual tile should not appear in more than 2 clues.
+    // so if a tile appears in two clues, it should not reappear in any other clues.
+    // this is a means of cutting down redundant clues.    
+    generatorClueCount = initArray([GRID_SIZE_W, GRID_SIZE_H]);
+    for(let i = 0; i < GRID_SIZE_W; i++)
+    {
+        generatorClueCount[i] = [];
+        for(let j = 0; j < GRID_SIZE_H; j++)
+        {
+            generatorClueCount[i][j] = 0;
+        }
+    }
     
     
     // create the first clue    
@@ -185,7 +202,7 @@ function generateClue(w, h)
     switch(DIFFICULTY)
     {
         case 0:
-            maxSquares = Math.ceil(w * h / 3);
+            maxSquares = Math.ceil(w * h / 5);
             break;
             
         case 1:
@@ -193,7 +210,7 @@ function generateClue(w, h)
             break;
             
         case 2:
-            maxSquares = Math.floor(w * h / 4);
+            maxSquares = Math.floor(w * h / 5);
             break;
     }
     
@@ -205,7 +222,7 @@ function generateClue(w, h)
         {
             newClue[clueX][clueY] = "x-x";
             rand = Math.random();
-            if(rand < 0.6 && squares <= maxSquares)
+            if(rand < 0.6 && squares <= maxSquares && generatorClueCount[locationX + clueX][locationY + clueY] <= 5)
             {
                 rand = Math.random();
                 switch(DIFFICULTY)
@@ -217,17 +234,20 @@ function generateClue(w, h)
                             if(rand < 0.5)
                             {
                                 newClue[clueX][clueY] = "x-" + globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(2);
+                                generatorClueCount[locationX + clueX][locationY + clueY] += 2;
                                 goodClue = true;
                             }
                             else
                             {
                                 newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(0) + "-x";
+                                generatorClueCount[locationX + clueX][locationY + clueY] += 2;
                                 goodClue = true;
                             }
                         }
                         else
                         {
                             newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY];
+                            generatorClueCount[locationX + clueX][locationY + clueY] += 3;
                             goodClue = true;
                         }
                         break;
@@ -240,17 +260,20 @@ function generateClue(w, h)
                             if(rand < 0.5)
                             {
                                 newClue[clueX][clueY] = "x-" + globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(2);
+                                generatorClueCount[locationX + clueX][locationY + clueY] += 2;
                                 goodClue = true;
                             }
                             else
                             {
                                 newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(0) + "-x";
+                                generatorClueCount[locationX + clueX][locationY + clueY] += 2;
                                 goodClue = true;
                             }
                         }
                         else
                         {
                             newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY];
+                            generatorClueCount[locationX + clueX][locationY + clueY] += 3;
                             goodClue = true;
                         }
                         break;
