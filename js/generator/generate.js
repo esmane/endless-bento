@@ -1,5 +1,6 @@
 // this array is going to keep track of how many times each tile appears in a clue.
 var generatorClueCount;
+var generatorTotalCount;
 
 
 // main puzzle generation function
@@ -8,7 +9,7 @@ var generatorClueCount;
 // the first step randomly generates clues
 // the second step tries to solve the puzzle, and fills in the solution grid
 // we repeat these two steps until the puzzle has been solved and the full solution grid has been filled in
-function generatePuzzle()
+function generatePuzzle(s)
 {
     // first, let's see what the grid width and height are
     // not a typo, width and height are reversed for some reason
@@ -36,10 +37,7 @@ function generatePuzzle()
         GRID_SIZE_H = 5;
         document.getElementById("size-w").value = 5;
     }
-    
-    var clueWidth = GRID_SIZE_W;
-    var clueHeight = GRID_SIZE_H;
-    
+
     
     // first step, make sure the grid size hasn't been changed before generating the puzzle
     if(GRID_SIZE_W != globalPlayerGrid.length || GRID_SIZE_H != globalPlayerGrid[0].length)
@@ -48,6 +46,35 @@ function generatePuzzle()
         setupButtons();
     }
 
+    var goodPuzzle = false;
+    while(!goodPuzzle)
+    {
+    goodPuzzle = generatePuzzleSub();
+    
+        // at this point we have a solveable puzzle generated. but how good is it?
+        // just as puzzles with more than 10 clues are bad puzzles, puzzles with less than 3 clues are also bad
+        if(globalClues.length < Math.max(GRID_SIZE_W, GRID_SIZE_H))
+        {
+            goodPuzzle = false;
+        }
+    }
+    
+    // now we have a good puzzle
+    clearClues();
+    for(let i = 0; i < globalClues.length; i++)
+    {
+        drawClue(globalClues[i]);
+    }
+}
+
+
+// this is the generate function that gets called from the main one
+// this is broken out to prevent recursion
+function generatePuzzleSub(s)
+{
+    var clueWidth = GRID_SIZE_W;
+    var clueHeight = GRID_SIZE_H;
+    
     // fill the grid and clear clues
     generateFillGrid();
     globalClues = [];
@@ -67,6 +94,9 @@ function generatePuzzle()
         }
     }
     
+    // we shouldn't have more tiles in the clues than in the actual puzzle
+    generatorTotalCount = 0;
+    
     
     // create the first clue    
     var rand = Math.random();
@@ -85,18 +115,57 @@ function generatePuzzle()
             }
             break;
             
-        // hard mode has them 5% of the time
+        // hard mode never has them
         case 2:
-            if(rand < 0.05)
-            {
-                generateClue(clueWidth, clueHeight);
-            }
             break;
     }
     
     
     // the rest of the clues are generated in a loop
     // the random constants will be adjusted with testing to generate more fun puzzles
+    
+    // this is a value that depends on the puzzle size
+    var maxTotalCount = GRID_SIZE_W * GRID_SIZE_H;
+    if(DIFFICULTY === 2)
+    {
+        switch(maxTotalCount)
+        {
+            case 10:
+            case 12:
+                maxTotalCount++;
+                break;
+                
+            case 15:
+                maxTotalCount += 3;
+                break;
+                
+            case 16:
+                maxTotalCount += 4;
+                break;
+                
+            case 20:
+                maxTotalCount += 6;
+                break;
+                
+            case 25:
+                maxTotalCount += 10;
+                break;
+        }
+    }
+    else
+    {
+        switch(maxTotalCount)
+        {
+            case 20:
+                maxTotalCount += 2;
+                break;
+                
+            case 25:
+                maxTotalCount += 6;
+                break;
+        }
+    }
+    
     while(!solverStep(0))
     {
         // find a size for the new clue
@@ -131,26 +200,13 @@ function generatePuzzle()
         
         generateClue(clueWidth, clueHeight);
         
-        // if we've generated more than 10 clues and the puzzle isn't solveable, chances are it is a bad puzzle. let's try again
-        if(globalClues.length >= Math.max(GRID_SIZE_W, GRID_SIZE_H) * 2)
+        // if we've generated more than 10 clues or the clues contain more tiles than the puzzle and the puzzle isn't solveable, chances are it is a bad puzzle. let's try again
+        if(globalClues.length >= Math.max(GRID_SIZE_W, GRID_SIZE_H) * 2 || generatorTotalCount > maxTotalCount)
         {
-            generatePuzzle();
+            return false;
         }
     }
-    
-    // at this point we have a solveable puzzle generated. but how good is it?
-    // just as puzzles with more than 10 clues are bad puzzles, puzzles with less than 3 clues are also bad
-    if(globalClues.length < Math.max(GRID_SIZE_W, GRID_SIZE_H))
-    {
-        generatePuzzle();
-    }
-    
-    // now we have a good puzzle
-    clearClues();
-    for(let i = 0; i < globalClues.length; i++)
-    {
-        drawClue(globalClues[i]);
-    }
+    return true;
 }
 
 
@@ -197,25 +253,14 @@ function generateClue(w, h)
     // now we need to decide how many squares the clue will actually have filled in.
     // this is random and also depends on the difficulty and puzzle size
     var squares = 0;
-    var maxSquares;
+    var maxSquares = Math.max(4, Math.ceil(w * h / 2));
     var rand;
-    switch(DIFFICULTY)
+    
+    if(Math.min(w, h) >= 4 && w === GRID_SIZE_W && h === GRID_SIZE_H)
     {
-        case 0:
-            maxSquares = Math.ceil(w * h / 5);
-            break;
-            
-        case 1:
-            maxSquares = Math.ceil(w * h / 4);
-            break;
-            
-        case 2:
-            maxSquares = Math.floor(w * h / 5);
-            break;
+        maxSquares = Math.ceil(w * h / 2) + 2;
     }
-    
-    maxSquares += 2;
-    
+
     for(let clueX = 0; clueX < w; clueX++)
     {
         for(let clueY = 0; clueY < h; clueY++)
@@ -225,56 +270,54 @@ function generateClue(w, h)
             if(rand < 0.6 && squares <= maxSquares && generatorClueCount[locationX + clueX][locationY + clueY] <= 5)
             {
                 rand = Math.random();
+                goodClue = true;
+                squares++;
                 switch(DIFFICULTY)
                 {
-                    case 0:
+                    case 1:
                         if(rand < 0.7)
                         {
                             rand = Math.random();
+                            generatorClueCount[locationX + clueX][locationY + clueY] += 2;
+                            generatorTotalCount += 0.5;
                             if(rand < 0.5)
                             {
                                 newClue[clueX][clueY] = "x-" + globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(2);
-                                generatorClueCount[locationX + clueX][locationY + clueY] += 2;
-                                goodClue = true;
                             }
                             else
                             {
                                 newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(0) + "-x";
-                                generatorClueCount[locationX + clueX][locationY + clueY] += 2;
-                                goodClue = true;
                             }
                         }
                         else
                         {
                             newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY];
                             generatorClueCount[locationX + clueX][locationY + clueY] += 3;
-                            goodClue = true;
+                            generatorTotalCount += 1;
                         }
                         break;
                         
-                    case 1:                        
+                    case 0:
                     case 2:
                         if(rand < 0.8)
                         {
                             rand = Math.random();
+                            generatorClueCount[locationX + clueX][locationY + clueY] += 2;
+                            generatorTotalCount += 0.5;
                             if(rand < 0.5)
                             {
                                 newClue[clueX][clueY] = "x-" + globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(2);
-                                generatorClueCount[locationX + clueX][locationY + clueY] += 2;
-                                goodClue = true;
                             }
                             else
                             {
                                 newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(0) + "-x";
-                                generatorClueCount[locationX + clueX][locationY + clueY] += 2;
-                                goodClue = true;
                             }
                         }
                         else
                         {
                             newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY];
                             generatorClueCount[locationX + clueX][locationY + clueY] += 3;
-                            goodClue = true;
+                            generatorTotalCount += 1;
                         }
                         break;
                 }
