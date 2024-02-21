@@ -33,18 +33,23 @@ window.onload = function()
     // now let's attempt to load the previous settings using cookies
     // difficulty
     var c = getCookie("difficulty");
-    DIFFICULTY = Number(c);
-    switch(DIFFICULTY)
+    switch(c)
     {
-        case 0:
+        case '0':
             document.getElementById("difficulty-jr").checked = true;
+            DIFFICULTY = 0;
             break;
-        case 1:
-            document.getElementById("difficulty-sr").checked = true;
-            break;
-        case 2:
+
+        case '2':
             document.getElementById("difficulty-mst").checked = true;
+            DIFFICULTY = 2;
             break;
+            
+        // default to senior
+        default:
+            document.getElementById("difficulty-sr").checked = true;
+            DIFFICULTY = 1;
+            break;        
     }
     
     // autoselect
