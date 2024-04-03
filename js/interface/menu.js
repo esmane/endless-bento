@@ -63,9 +63,10 @@ function setBackground()
 {
     if(!globalIsDarkBackground)
     {
-        document.body.style.backgroundColor = "#253330";
+        // set dark
+        document.body.style.backgroundColor = "#222F2D";
         
-        document.getElementById("header").style.backgroundColor = "#131918";
+        document.getElementById("header").style.backgroundColor = "#1C2624";
         document.getElementById("play-button").style.color = "#ffffff";
         document.getElementById("menu-button").style.color = "#ffffff";
         document.getElementById("help-button").style.color = "#ffffff";
@@ -77,6 +78,7 @@ function setBackground()
     }
     else
     {
+        // set light
         document.body.style.backgroundColor = "#baffee";
         
         document.getElementById("header").style.backgroundColor = "#a9eedd";
