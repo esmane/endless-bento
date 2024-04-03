@@ -92,16 +92,18 @@ window.onload = function()
 	}
     
     // dark mode
-    c = getCookie("dark-background");
-    if((window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) || c === "true")
-	{
-		document.getElementById("dark-background-option").checked = true;
-		globalIsDarkBackground = true;
-	}
-	else
-	{
-		document.getElementById("dark-background-option").checked = false;		
-	}
+    c = getCookie("dark-mode");
+    globalIsDarkBackground = false;
+    // if (we prefer dark and have no cookie set) or have cookie set to dark, make dark
+    if((window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && c === "") || c === "true")
+    {
+        document.getElementById("dark-background-option").checked = true;
+        setBackground();
+    }
+    else
+    {
+        document.getElementById("dark-background-option").checked = false;		
+    }
 	
 	
     // now that we've loaded the settings, let's generate a puzzle
