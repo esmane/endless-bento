@@ -180,23 +180,3 @@ a:link, a:visited {
 		max-width: 95vw;
 	}
 }
-
-/* dark mode default */
-@media (prefers-color-scheme: dark) {
-	body {
-		background-color: #253330;
-		color: #ffffff;
-	}
-
-	#header {
-		background-color: #131918;
-	}
-
-	.ui-button {
-		color: #ffffff;
-	}
-	
-	.selected-ui-button {
-		color: #ffffff;
-	}
-}
