@@ -1,5 +1,5 @@
 # endless bento
-It's a clone of the bento puzzle minigame from *Nancy Drew: Shadow at the Water's Edge*. I haven't seen this type of puzzle anywhere else (if you have let me know) so I made a browser version that generates its own puzzles and can be played anywhere, because these puzzles are a lot of fun.
+It's a clone of the bento puzzle minigame from *Nancy Drew: Shadow at the Water's Edge*. I haven't seen this type of puzzle anywhere else (if you have let me know) so I made a browser version that generates its own puzzles and can be played anywhere. [Play here!](https://esmane.github.io/endless-bento/)
 
 ## How to play
 ### Rules
