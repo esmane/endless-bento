@@ -183,7 +183,7 @@ a:link, a:visited {
 
 
 
-/* modal dialog*/
+/* modal dialog */
 /* thanks https://medium.com/hackernoon/the-ultimate-guide-for-creating-a-simple-modal-component-in-vanilla-javascript-react-angular-8733e2859b42 */
 .modal {
   position: fixed;
@@ -204,7 +204,8 @@ a:link, a:visited {
   background: rgba(0,0,0,0.1);
 }
 
-.modal .modal-content{
+.modal .modal-content {
+    color: #000000;
     z-index: 999;
     position: absolute;
     top: 30%;
@@ -219,5 +220,4 @@ a:link, a:visited {
     padding-top: 20px;
     padding-bottom: 20px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.7);
-    border-radius: 4px;
 }
