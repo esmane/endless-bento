@@ -48,9 +48,8 @@ function setTile(x, y)
     // check if the puzzle has been solved
     if(equal(globalPlayerGrid, globalSolutionGrid))
 	{
-		// delay the alert slightly so that we can see the completed puzzle on chrome
-		setTimeout(alert("Congratulations! The puzzle is completely solved."), 10);
-		generatePuzzle();
+		// display the modal window
+        document.getElementById("modal-display").style.display = "block";
 	}
 
     // at this point we are done setting the grid. the rest of this function is cycling through the selection options
@@ -100,4 +99,12 @@ function clearTile(x, y)
     globalPlayerGrid[x][y] = "x-x";
     document.getElementById(x + '-' + y).src = "./tiles/" + globalPlayerGrid[x][y] + ".png";
     document.getElementById(x + '-' + y).alt = globalPlayerGrid[x][y];
+}
+
+
+// this is called when you click the modal
+function modalAction()
+{
+    document.getElementById("modal-display").style.display = "none";
+    generatePuzzle();
 }
