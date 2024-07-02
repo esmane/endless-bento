@@ -66,7 +66,7 @@ function setBackground()
         // set dark
         document.body.style.backgroundColor = "#222F2D";
         
-        document.getElementById("header").style.backgroundColor = "#1C2624";
+        document.getElementById("header").style.backgroundColor = "#1E2928";
         document.getElementById("play-button").style.color = "#ffffff";
         document.getElementById("menu-button").style.color = "#ffffff";
         document.getElementById("help-button").style.color = "#ffffff";
