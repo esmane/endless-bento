@@ -131,5 +131,17 @@
                 <!-- buttons will go here -->
             </div>
         </div>
+        
+        <!-- modal dialog (appears when a puzzle is solved) -->
+        <div class="modal" id="modal-display" style="display:none">
+            <div class="overlay"></div>
+            <div class="modal-content">
+                <h2>Congratulations!</h2>
+                <h3>The solution is correct!</h3><br>
+                <button id="modal-button" onclick="modalAction()">
+                    new puzzle
+                </button>
+            </div>
+        </div>
     </body>
 </html>
