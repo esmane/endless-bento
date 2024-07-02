@@ -208,9 +208,9 @@ a:link, a:visited {
     color: #000000;
     z-index: 999;
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 50%;
-    transform: translate(-50%, -30%);
+    transform: translate(-50%, -40%);
     max-height: 90%;
     overflow: auto;
     background: #ffeeee;
