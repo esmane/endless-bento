@@ -66,7 +66,7 @@ function solverSetSquare(x, y, tile)
             solverEliminatePossibility(i, j, tile);
         }
     }
-    
+
     // then we want to make it the only possibility for the given tile
     solverPossibilityGrid[x][y] = [tile];
 }
@@ -77,7 +77,7 @@ function solverSetSquareColor(x, y, color)
 {
     for(let i = solverPossibilityGrid[x][y].length - 1; i >= 0; i--)
     {
-        if(solverPossibilityGrid[x][y][i].charAt(0) != color)
+        if(solverPossibilityGrid[x][y][i].charAt(0) !== color)
         {
             solverPossibilityGrid[x][y].splice(i, 1);
         }
@@ -88,7 +88,7 @@ function solverSetSquareShape(x, y, shape)
 {
     for(let i = solverPossibilityGrid[x][y].length - 1; i >= 0; i--)
     {
-        if(solverPossibilityGrid[x][y][i].charAt(2) != shape)
+        if(solverPossibilityGrid[x][y][i].charAt(2) !== shape)
         {
             solverPossibilityGrid[x][y].splice(i, 1);
         }
