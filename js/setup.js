@@ -1,9 +1,6 @@
 // these messy functions setup the html based on the size of the puzzle
 // we create a grid of any size, and create the appropriate number of buttons for all the tiles the grid can take
 
-// scale constant
-const SCALE_ROOT = 3;
-
 // this function creates the grid
 function setupGrid()
 {
@@ -24,7 +21,7 @@ function setupGrid()
     }
     // but regardless of the mode we don't want the tiles to ever be larger than their true size (100). That would start to look weird and pixelated.
     // so this next line is there to make sure that if we do make a scale adjustment it is a scale down and never a scale up.
-    
+
     scale = Math.min(scale, 100);
     var toAppend = "";
     for(let i = 0; i < GRID_SIZE_W; i++)
@@ -62,7 +59,7 @@ function setupGrid()
 
 // this function creates the buttons
 function setupButtons()
-{     
+{
     // html time
     var toAppend = "";
     for(let i = 0; i < GRID_SIZE_W; i++)
@@ -92,8 +89,8 @@ function setupButtons()
     }
     toAppend += "&nbsp;<button id='x' class='game-button' onclick='setDelete()'><img class='tile-50' src='./tiles/delete.png' alt='x'></button>";
     document.getElementById("buttons").innerHTML = toAppend;
-    
-    
+
+
     // if the currently selected buttons are buttons that are about to disappear, set them back to the first option
     if(Number(globalSelectedColor) >= GRID_SIZE_W)
     {
@@ -105,7 +102,7 @@ function setupButtons()
     {
         setColor(globalSelectedColor);
     }
-    
+
     if(Number(globalSelectedShape) >= GRID_SIZE_H)
     {
         globalSelectedShape = '0';
