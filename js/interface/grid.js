@@ -41,22 +41,22 @@ function redrawGrid()
 function setTile(x, y)
 {
     // set the three main things
-	globalPlayerGrid[x][y] = globalSelectedColor + '-' + globalSelectedShape;
-	document.getElementById(x + '-' + y).src = "./tiles/" + globalPlayerGrid[x][y] + ".png";
-	document.getElementById(x + '-' + y).alt = globalPlayerGrid[x][y];
+    globalPlayerGrid[x][y] = globalSelectedColor + '-' + globalSelectedShape;
+    document.getElementById(x + '-' + y).src = "./tiles/" + globalPlayerGrid[x][y] + ".png";
+    document.getElementById(x + '-' + y).alt = globalPlayerGrid[x][y];
 
     // check if the puzzle has been solved
     if(equal(globalPlayerGrid, globalSolutionGrid))
-	{
-		// display the modal window
+    {
+        // display the modal window
         document.getElementById("modal-display").style.display = "block";
-	}
+    }
 
     // at this point we are done setting the grid. the rest of this function is cycling through the selection options
-	// cycle through the different tile selections depending on the setting and if we are currently on delete (don't cycle delete)
-	if(globalSelectedColor != 'x')
-	{
-	    switch(globalSettingAutoSelect)
+    // cycle through the different tile selections depending on the setting and if we are currently on delete (don't cycle delete)
+    if(globalSelectedColor !== 'x')
+    {
+        switch(globalSettingAutoSelect)
         {
         // shape
         case 's':
@@ -89,7 +89,7 @@ function setTile(x, y)
             break;
 
         }
-	}
+    }
 }
 
 

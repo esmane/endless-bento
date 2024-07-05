@@ -7,11 +7,11 @@ function drawClue(clue)
         toAppend += "<div class='clue-row'";
         toAppend += " style='height: ";
         toAppend += scale;
-        toAppend += "px;'>"
+        toAppend += "px;'>";
         for(let j = 0; j < clue[i].length; j++)
         {
             toAppend += "<div class='clue-item'><img class='tile-50' src='./tiles/";
-            toAppend += clue[i][j];           
+            toAppend += clue[i][j];
             toAppend += ".png' alt='";
             toAppend += clue[i][j];
             toAppend += "' style='width: ";

@@ -62,20 +62,20 @@ function setShape(shape)
 
 function setDelete()
 {
-	// set previously selected color and shape to grey
-	var e = document.getElementById("s-" + globalSelectedShape);
-	e.className = "game-button";
-	e = document.getElementById("c-" + globalSelectedColor);
-	e.className = "game-button";
+    // set previously selected color and shape to grey
+    var e = document.getElementById("s-" + globalSelectedShape);
+    e.className = "game-button";
+    e = document.getElementById("c-" + globalSelectedColor);
+    e.className = "game-button";
 
-	// set selected letter and number to x
-	globalOldSelectedShape = globalSelectedShape;
-	globalOldSelectedColor = globalSelectedColor;
+    // set selected letter and number to x
+    globalOldSelectedShape = globalSelectedShape;
+    globalOldSelectedColor = globalSelectedColor;
 
-	globalSelectedColor = 'x';
-	globalSelectedShape = 'x';
+    globalSelectedColor = 'x';
+    globalSelectedShape = 'x';
 
-	// set delete button to red
-	e = document.getElementById('x');
-	e.className = "selected-game-button";
+    // set delete button to red
+    e = document.getElementById('x');
+    e.className = "selected-game-button";
 }
