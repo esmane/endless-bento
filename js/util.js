@@ -8,7 +8,7 @@ function initArray(dimensions)
     {
         var dim = dimensions[0];
         var rest = dimensions.slice(1);
-        var newArray = [];
+        var newArray = new Array();
 
         for(let i = 0; i < dim; i++)
         {
