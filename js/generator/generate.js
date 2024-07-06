@@ -9,13 +9,13 @@ var generatorTotalCount;
 // the first step randomly generates clues
 // the second step tries to solve the puzzle, and fills in the solution grid
 // we repeat these two steps until the puzzle has been solved and the full solution grid has been filled in
-function generatePuzzle(s)
+function generatePuzzle()
 {
     // first, let's see what the grid width and height are
     // not a typo, width and height are reversed for some reason
     GRID_SIZE_H = Math.round(document.getElementById("size-w").value);
     GRID_SIZE_W = Math.round(document.getElementById("size-h").value);
-    
+
     if(GRID_SIZE_H < 2)
     {
         GRID_SIZE_H = 2;
@@ -26,7 +26,7 @@ function generatePuzzle(s)
         GRID_SIZE_H = 5;
         document.getElementById("size-w").value = 5;
     }
-    
+
     if(GRID_SIZE_W < 2)
     {
         GRID_SIZE_W = 2;
@@ -38,9 +38,9 @@ function generatePuzzle(s)
         document.getElementById("size-w").value = 5;
     }
 
-    
+
     // first step, make sure the grid size hasn't been changed before generating the puzzle
-    if(GRID_SIZE_W != globalPlayerGrid.length || GRID_SIZE_H != globalPlayerGrid[0].length)
+    if(GRID_SIZE_W !== globalPlayerGrid.length || GRID_SIZE_H !== globalPlayerGrid[0].length)
     {
         setupGrid();
         setupButtons();
@@ -50,7 +50,7 @@ function generatePuzzle(s)
     while(!goodPuzzle)
     {
     goodPuzzle = generatePuzzleSub();
-    
+
         // at this point we have a solveable puzzle generated. but how good is it?
         // just as puzzles with more than 10 clues are bad puzzles, puzzles with less than 3 clues are also bad
         if(globalClues.length < Math.max(GRID_SIZE_W, GRID_SIZE_H))
@@ -58,7 +58,7 @@ function generatePuzzle(s)
             goodPuzzle = false;
         }
     }
-    
+
     // now we have a good puzzle
     clearClues();
     for(let i = 0; i < globalClues.length; i++)
@@ -70,11 +70,11 @@ function generatePuzzle(s)
 
 // this is the generate function that gets called from the main one
 // this is broken out to prevent recursion
-function generatePuzzleSub(s)
+function generatePuzzleSub()
 {
     var clueWidth = GRID_SIZE_W;
     var clueHeight = GRID_SIZE_H;
-    
+
     // fill the grid and clear clues
     generateFillGrid();
     globalClues = [];
@@ -83,7 +83,7 @@ function generatePuzzleSub(s)
 
     // an individual tile should not appear in more than 2 clues.
     // so if a tile appears in two clues, it should not reappear in any other clues.
-    // this is a means of cutting down redundant clues.    
+    // this is a means of cutting down redundant clues.
     generatorClueCount = initArray([GRID_SIZE_W, GRID_SIZE_H]);
     for(let i = 0; i < GRID_SIZE_W; i++)
     {
@@ -93,12 +93,12 @@ function generatePuzzleSub(s)
             generatorClueCount[i][j] = 0;
         }
     }
-    
+
     // we shouldn't have more tiles in the clues than in the actual puzzle
     generatorTotalCount = 0;
-    
-    
-    // create the first clue    
+
+
+    // create the first clue
     var rand = Math.random();
     switch(DIFFICULTY)
     {
@@ -106,7 +106,7 @@ function generatePuzzleSub(s)
         case 0:
             generateClue(clueWidth, clueHeight);
             break;
-            
+
         // medium mode has them 40% of the time
         case 1:
             if(rand < 0.4)
@@ -114,16 +114,16 @@ function generatePuzzleSub(s)
                 generateClue(clueWidth, clueHeight);
             }
             break;
-            
+
         // hard mode never has them
-        case 2:
+        default:
             break;
     }
-    
-    
+
+
     // the rest of the clues are generated in a loop
     // the random constants will be adjusted with testing to generate more fun puzzles
-    
+
     // this is a value that depends on the puzzle size
     var maxTotalCount = GRID_SIZE_W * GRID_SIZE_H;
     if(DIFFICULTY === 2)
@@ -134,19 +134,19 @@ function generatePuzzleSub(s)
             case 12:
                 maxTotalCount++;
                 break;
-                
+
             case 15:
                 maxTotalCount += 3;
                 break;
-                
+
             case 16:
                 maxTotalCount += 4;
                 break;
-                
+
             case 20:
                 maxTotalCount += 6;
                 break;
-                
+
             case 25:
                 maxTotalCount += 10;
                 break;
@@ -159,19 +159,19 @@ function generatePuzzleSub(s)
             case 20:
                 maxTotalCount += 2;
                 break;
-                
+
             case 25:
                 maxTotalCount += 6;
                 break;
         }
     }
-    
+
     while(!solverStep(0))
     {
         // find a size for the new clue
         clueWidth = Math.floor(Math.random() * (GRID_SIZE_W + 1));
         clueHeight = Math.floor(Math.random() * (GRID_SIZE_H + 1));
-        
+
         // we do not want to generate any 1x1 clues because they are useless, and we also do not want to generate any more full size clues because there should only be one of those per puzzle.
         if(clueWidth === GRID_SIZE_W && clueHeight === GRID_SIZE_H)
         {
@@ -197,9 +197,9 @@ function generatePuzzleSub(s)
                 clueHeight++;
             }
         }
-        
+
         generateClue(clueWidth, clueHeight);
-        
+
         // if we've generated more than 10 clues or the clues contain more tiles than the puzzle and the puzzle isn't solveable, chances are it is a bad puzzle. let's try again
         if(globalClues.length >= Math.max(GRID_SIZE_W, GRID_SIZE_H) * 2 || generatorTotalCount > maxTotalCount)
         {
@@ -214,7 +214,7 @@ function generatePuzzleSub(s)
 function generateFillGrid()
 {
     globalSolutionGrid = initArray([GRID_SIZE_W, GRID_SIZE_H]);
-    
+
     // first get a list of all the possibilities
     var ALL_POSSIBILITIES = initArray([GRID_SIZE_W * GRID_SIZE_H]);
 
@@ -227,7 +227,7 @@ function generateFillGrid()
             index++;
         }
     }
-    
+
     for(let gridX = 0; gridX < GRID_SIZE_W; gridX++)
     {
         for(let gridY = 0; gridY < GRID_SIZE_H; gridY++)
@@ -235,7 +235,7 @@ function generateFillGrid()
             let n = Math.floor(Math.random() * ALL_POSSIBILITIES.length);
             globalSolutionGrid[gridX][gridY] = ALL_POSSIBILITIES[n];
             ALL_POSSIBILITIES.splice(n, 1);
-        }   
+        }
     }
 }
 
@@ -249,13 +249,13 @@ function generateClue(w, h)
     // we need to pick a location for the clue
     var locationX = Math.floor(Math.random() * (GRID_SIZE_W - w + 1));
     var locationY = Math.floor(Math.random() * (GRID_SIZE_H - h + 1));
-    
+
     // now we need to decide how many squares the clue will actually have filled in.
     // this is random and also depends on the difficulty and puzzle size
     var squares = 0;
     var maxSquares = Math.max(4, Math.ceil(w * h / 2));
     var rand;
-    
+
     if(Math.min(w, h) >= 4 && w === GRID_SIZE_W && h === GRID_SIZE_H)
     {
         maxSquares = Math.ceil(w * h / 2) + 2;
@@ -272,59 +272,56 @@ function generateClue(w, h)
                 rand = Math.random();
                 goodClue = true;
                 squares++;
-                switch(DIFFICULTY)
+                if(DIFFICULTY === 1)
                 {
-                    case 1:
-                        if(rand < 0.7)
+                    if(rand < 0.7)
+                    {
+                        rand = Math.random();
+                        generatorClueCount[locationX + clueX][locationY + clueY] += 2;
+                        generatorTotalCount += 0.5;
+                        if(rand < 0.5)
                         {
-                            rand = Math.random();
-                            generatorClueCount[locationX + clueX][locationY + clueY] += 2;
-                            generatorTotalCount += 0.5;
-                            if(rand < 0.5)
-                            {
-                                newClue[clueX][clueY] = "x-" + globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(2);
-                            }
-                            else
-                            {
-                                newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(0) + "-x";
-                            }
+                            newClue[clueX][clueY] = "x-" + globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(2);
                         }
                         else
                         {
-                            newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY];
-                            generatorClueCount[locationX + clueX][locationY + clueY] += 3;
-                            generatorTotalCount += 1;
+                            newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(0) + "-x";
                         }
-                        break;
-                        
-                    case 0:
-                    case 2:
-                        if(rand < 0.8)
+                    }
+                    else
+                    {
+                        newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY];
+                        generatorClueCount[locationX + clueX][locationY + clueY] += 3;
+                        generatorTotalCount += 1;
+                    }
+                }
+                else
+                {
+                    if(rand < 0.8)
+                    {
+                        rand = Math.random();
+                        generatorClueCount[locationX + clueX][locationY + clueY] += 2;
+                        generatorTotalCount += 0.5;
+                        if(rand < 0.5)
                         {
-                            rand = Math.random();
-                            generatorClueCount[locationX + clueX][locationY + clueY] += 2;
-                            generatorTotalCount += 0.5;
-                            if(rand < 0.5)
-                            {
-                                newClue[clueX][clueY] = "x-" + globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(2);
-                            }
-                            else
-                            {
-                                newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(0) + "-x";
-                            }
+                            newClue[clueX][clueY] = "x-" + globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(2);
                         }
                         else
                         {
-                            newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY];
-                            generatorClueCount[locationX + clueX][locationY + clueY] += 3;
-                            generatorTotalCount += 1;
+                            newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY].charAt(0) + "-x";
                         }
-                        break;
+                    }
+                    else
+                    {
+                        newClue[clueX][clueY] = globalSolutionGrid[locationX + clueX][locationY + clueY];
+                        generatorClueCount[locationX + clueX][locationY + clueY] += 3;
+                        generatorTotalCount += 1;
+                    }
                 }
             }
         }
     }
-    
+
     if(goodClue)
     {
         globalClues.push(newClue);
