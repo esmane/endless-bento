@@ -17,7 +17,15 @@ function setupGrid()
     else
     {
         // skinny monitors always scale to the width. it is impossible for the width to fit and the height to not on a monitor that is taller than it is wide
-        scale = window.innerWidth / (GRID_SIZE_H + 1);
+        // for some reason 5 wide puzzles need to be scaled more than the others
+        if(GRID_SIZE_H > 4)
+        {
+            scale = window.innerWidth / (GRID_SIZE_H + 1.5);
+        }
+        else
+        {
+            scale = window.innerWidth / (GRID_SIZE_H + 1);
+        }
     }
     // but regardless of the mode we don't want the tiles to ever be larger than their true size (100). That would start to look weird and pixelated.
     // so this next line is there to make sure that if we do make a scale adjustment it is a scale down and never a scale up.
