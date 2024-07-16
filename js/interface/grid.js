@@ -108,3 +108,14 @@ function modalAction()
     document.getElementById("modal-display").style.display = "none";
     generatePuzzle();
 }
+
+
+
+// scale grid when window is resized
+// there are probably better ways to do this but this is simple enough
+var scaleTimeout;
+window.onresize = function()
+{
+    clearTimeout(scaleTimeout);
+    scaleTimeout = setTimeout(function() {setupGrid(true);}, 250);
+};
