@@ -2,7 +2,7 @@
 // we create a grid of any size, and create the appropriate number of buttons for all the tiles the grid can take
 
 // this function creates the grid
-function setupGrid()
+function setupGrid(redraw)
 {
     // the grid should never be split up even on skinny monitors (phones)
     // there are two different scaling methods depending on if it is a wide monitor or a skinny one
@@ -60,8 +60,18 @@ function setupGrid()
 
     document.getElementById("grid").innerHTML = toAppend;
 
-    // now that the document contains the necessary number of tiles, let's update the internal array to match
-    clearPlayerGrid();
+
+    // if we passed a redraw argument we want to redraw the grid according to the array rather than clearing the internal array to match the newly created empty grid
+    // if we did not pass a redraw argument we just want to clear the internal array
+    if(redraw === undefined)
+    {
+        // now that the document contains the necessary number of tiles, let's update the internal array to match
+        clearPlayerGrid();
+    }
+    else
+    {
+        redrawGrid();
+    }
 }
 
 
