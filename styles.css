@@ -121,13 +121,6 @@ a:link, a:visited {
 	transition: all 0.2s;
 }
 
-.game-button:hover {
-	background: #ddaa55;
-}
-
-.selected-game-button:hover {
-	background: #ffeeee;
-}
 
 
 
@@ -150,10 +143,6 @@ a:link, a:visited {
 	transition: all 0.2s;
 }
 
-.ui-button:hover {
-	background-color: #ddaa55;
-}
-
 .selected-ui-button {
 	font-family: "Helvetica Neue", Arial, sans-serif;
 	color: #000000;
@@ -167,9 +156,26 @@ a:link, a:visited {
 	transition: all 0.2s;
 }
 
-.selected-ui-button:hover {
-	background: #ffeeee;
+
+/* phones and tablets should not have hover style */
+@media (hover: hover) {
+	.game-button:hover {
+		background: #ddaa55;
+	}
+	
+	.selected-game-button:hover {
+		background: #ffeeee;
+	}
+	
+	.ui-button:hover {
+		background-color: #ddaa55;
+	}
+	
+	.selected-ui-button:hover {
+		background: #ffeeee;
+	}	
 }
+
 
 
 
