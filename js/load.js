@@ -50,9 +50,9 @@ function loadPuzzle(clues, grid)
     
     DIFFICULTY = oldDifficulty;
     
-    
     // move solver grid to solution grid
     // this is necessary for the solution checker to work
+    globalSolutionGrid = initArray([GRID_SIZE_W, GRID_SIZE_H]);
     for(let i = 0; i < GRID_SIZE_W; i++)
     {
         for(let j = 0; j < GRID_SIZE_H; j++)
@@ -128,4 +128,3 @@ function savePuzzleToURL()
     
     console.log(puzzleURL);
 }
-
