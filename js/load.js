@@ -127,4 +127,5 @@ function savePuzzleToURL()
     puzzleURL += puzzleQuery;
     
     console.log(puzzleURL);
-}
+}
+
