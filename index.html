@@ -56,35 +56,53 @@
         <!-- menus -->
         <div id="menu" class="menu-class">
             <h2>settings</h2><br>
-            <h3>colors</h3>
-            <label for="dark-background-option">dark background</label>
-            <input type="checkbox" id="dark-background-option" onchange="setBackground()">
-            <br><br>
 
             <h3>difficulty</h3>
-            <label for="difficulty-jr">Junior</label>
-            <input type="radio" id="difficulty-jr" name="difficulty" onclick="setDifficulty(0)"><br>
-            <label for="difficulty-sr">Senior</label>
-            <input type="radio" id="difficulty-sr" name="difficulty" onclick="setDifficulty(1)"><br>
-            <label for="difficulty-mst">Master</label>
-            <input type="radio" id="difficulty-mst" name="difficulty" onclick="setDifficulty(2)"><br>
-            <br>
+            <div class="settings-block">
+                <label for="difficulty-jr">Junior</label><br>
+                <label for="difficulty-sr">Senior</label><br>
+                <label for="difficulty-mst">Master</label><br>
+            </div>
+            <div class="settings-block">
+                <input type="radio" id="difficulty-jr" name="difficulty" onclick="setDifficulty(0)"><br>
+                <input type="radio" id="difficulty-sr" name="difficulty" onclick="setDifficulty(1)"><br>
+                <input type="radio" id="difficulty-mst" name="difficulty" onclick="setDifficulty(2)"><br>
+            </div>
+            <br><br>
+            
             
             <h3>puzzle size</h3>
-            <label for="size-w">width</label>
-            <input type="number" id="size-w" name="size" min="2" max="5"><br>
-            <label for="size-h">height</label>
-            <input type="number" id="size-h" name="size" min="2" max="5"><br>
-            <br>
-
+            <div class="settings-block">
+                <label for="size-w">width</label><br>
+                <label for="size-h">height</label><br>
+            </div>
+            <div class="settings-block">
+                <input style="width:3em" type="number" id="size-w" name="size" min="2" max="5"><br>
+                <input style="width:3em" type="number" id="size-h" name="size" min="2" max="5"><br>
+            </div>
+            <br><br>
+            
+            <h3>appearance</h3>
+            <div class="settings-block">
+                <label for="dark-background-option">dark background</label><br>
+            </div>
+            <div class="settings-block">
+                <input type="checkbox" id="dark-background-option" onchange="setBackground()"><br>
+            </div>
+            <br><br>
+            
             <h3>autoselect mode</h3>
-            <label for="autosel-color">Color</label>
-            <input type="radio" id="autosel-color" name="autoselect" onclick="setAutosel('c')"><br>
-            <label for="autosel-shape">Shape</label>
-            <input type="radio" id="autosel-shape" name="autoselect" onclick="setAutosel('s')"><br>
-            <label for="autosel-off">Neither</label>
-            <input type="radio" id="autosel-off" name="autoselect" onclick="setAutosel('n')"><br>
-            <br>
+            <div class="settings-block">
+                <label for="autosel-color">Color</label><br>
+                <label for="autosel-shape">Shape</label><br>
+                <label for="autosel-off">Neither</label><br>
+            </div>
+            <div class="settings-block">
+                <input type="radio" id="autosel-color" name="autoselect" onclick="setAutosel('c')"><br>
+                <input type="radio" id="autosel-shape" name="autoselect" onclick="setAutosel('s')"><br>
+                <input type="radio" id="autosel-off" name="autoselect" onclick="setAutosel('n')"><br>
+            </div>
+            <br><br>
             
             <button onclick="saveSettings()">save settings (will use cookies)</button><br>
             <br>
@@ -104,14 +122,15 @@
             <p><b>difficulty:</b> This is how you tweak the difficulty of the generated puzzles. Changing this setting does not affect the current puzzle and will apply starting with the next puzzle generated.</p>
             <p><b>puzzle size:</b> You can change the size of the puzzle independently of the difficulty level. Both the width and height have a maximum value of 5 and a minimum value of 2, so you can generate any size puzzle between 2x2 and 5x5. If you enter an invalid number into one of these fields it will get rounded to the nearest allowed size when the next puzzle is generated. Like with the last option a change here will not affect the current puzzle.</p>
             <p><b>autoselect mode:</b> With this you can change what happens after a tile is placed. "Color" (or "Shape") will cause the next color (or shape) in line to become selected automatically whenever a tile is placed. "Neither" disables this behavior.</p>
-            <p><b>save settings: </b> This saves all the above settings using cookies so your settings will stay when you close and reopen the page. The settings will never autosave and you must click this button every time you change the settings if you want them to be saved. If you do not save your settings for a long time the cookies will expire and the settings will be reset. This is programmed to happen after 1000 days but may happen sooner if your browser sets a limit on cookie lifespan.</p><br><br>
+            <p><b>save settings: </b> This saves all the above settings using cookies so your settings will stay when you close and reopen the page. The settings will never autosave and you must click this button every time you change the settings if you want them to be saved. If you do not save your settings for a long time the cookies will expire and the settings will be reset. This is programmed to happen after 1000 days but may happen sooner if your browser sets a limit on cookie lifespan.</p>
         </div>
         
         
         <div id="about" class="menu-class">
             <h2>about</h2>
             <p>It's a clone of the bento puzzle minigame from <i>Nancy Drew: Shadow at the Water's Edge</i>. I haven't seen this type of puzzle anywhere else so I made a browser version that generates its own puzzles. Have fun!</p>
-            <p>If you prefer the original version of this site, you can access it <a href="https://esmane.github.io/endless-bento-classic/">here</a>.</p><br><br>
+            <p style="text-align:center"><a href="https://esmane.github.io/endless-bento-classic/">endless bento classic</a></p>
+            <p style="text-align:center"><a href="https://github.com/esmane/endless-bento">source code</a></p>
         </div>
         
         
