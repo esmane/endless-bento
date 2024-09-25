@@ -130,6 +130,7 @@ a:link, a:visited {
 	display: none;
 	overflow-x: hidden;
 	max-width: 650px;
+    padding-bottom: 5px;
 }
 
 .ui-button {
