@@ -102,6 +102,13 @@ function savePuzzleToCookies()
 // used for sharing puzzles or saving without cookies
 function loadPuzzleFromURL()
 {
+    // if there is no puzzle in the url, do not attempt to load
+    // and return false
+    if(window.location.search === "")
+    {
+        return false;
+    }
+    
     const searchParams = new URLSearchParams(window.location.search);
     var clues = searchParams.get("c");
     var grid = searchParams.get("g");
@@ -110,6 +117,7 @@ function loadPuzzleFromURL()
     grid = decodeURIComponent(grid);
     
     loadPuzzle(clues, grid);
+    return true;
 }
 
 function savePuzzleToURL()
