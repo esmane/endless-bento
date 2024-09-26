@@ -164,6 +164,15 @@ window.onload = function()
             saveEverything();
         }
     });
+    
+    // new feature dialog
+    today = new Date();
+    deadline = new Date(2024, 9, 5);
+    if(getCookie("difficulty") !== "" && getCookie("saw-modal") === "" && today <= deadline)
+    {
+        document.getElementById("new-feature-display").style.display = "block";
+        setCookie("saw-modal", "1", 10);
+    }
 };
 
 // save on unload
