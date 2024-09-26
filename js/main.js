@@ -58,15 +58,18 @@ window.onload = function()
     {
         case 'c':
             document.getElementById("autosel-color").checked = true;
+            globalSettingAutoSelect = "c";
             break;
 
         case 'n':
             document.getElementById("autosel-off").checked = true;
+            globalSettingAutoSelect = "n";
             break;
 
         // default to shape
         default:
             document.getElementById("autosel-shape").checked = true;
+            globalSettingAutoSelect = "s";
             break;
     }
 
