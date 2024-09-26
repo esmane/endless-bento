@@ -166,8 +166,8 @@ window.onload = function()
     });
     
     // new feature dialog
-    today = new Date();
-    deadline = new Date(2024, 9, 5);
+    let today = new Date();
+    let deadline = new Date(2024, 9, 5);
     if(getCookie("difficulty") !== "" && getCookie("saw-modal") === "" && today <= deadline)
     {
         document.getElementById("new-feature-display").style.display = "block";
