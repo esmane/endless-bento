@@ -126,8 +126,11 @@ function setPuzzleAutosave()
     if(globalIsAutosavePuzzle)
     {
         globalIsAutosavePuzzle = false;
-        setCookie("saved-clues", "", 0);
-        setCookie("saved-grid", "", 0);
+        if(getCookie("saved-clues") !== "")
+        {
+            setCookie("saved-clues", "", 0);
+            setCookie("saved-grid", "", 0);
+        }
         setCookie("autosave-puzzle", "", 0);
     }
     else
