@@ -167,7 +167,7 @@ window.onload = function()
     
     // new feature dialog
     let today = new Date();
-    let deadline = new Date(2024, 9, 5);
+    let deadline = new Date(2024, 9, 12);
     if(getCookie("difficulty") !== "" && getCookie("saw-modal") === "" && today <= deadline)
     {
         document.getElementById("new-feature-display").style.display = "block";
