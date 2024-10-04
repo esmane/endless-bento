@@ -6,6 +6,10 @@ var DIFFICULTY = 1;     // 0 for jr, 1 for sr, 2 for master
 // global interface settings
 var globalSettingAutoSelect = "s";    // c for color, s for shape, n for none
 var globalIsDarkBackground = false;
+var globalIsAutosavePuzzle = false;
+var globalIsAutosaveSettings = false;
+// if the puzzle has been solved, and a new puzzle has not been generated yet, we do not want to save the puzzle!
+var globalDoNotSave = false;
 
 // these are for the buttons
 var globalSelectedColor = '0';
@@ -107,9 +111,72 @@ window.onload = function()
     {
         document.getElementById("dark-background-option").checked = false;
     }
+    
+    // autosave
+    c = getCookie("autosave-puzzle");
+    if(c === "true")
+    {
+        globalIsAutosavePuzzle = true;
+        document.getElementById("autosave-puzzle-option").checked = true;
+    }
+    else
+    {
+        document.getElementById("autosave-puzzle-option").checked = false;
+    }
+    
+    c = getCookie("autosave-settings");
+    if(c === "true")
+    {
+        globalIsAutosaveSettings = true;
+        document.getElementById("autosave-settings-option").checked = true;
+    }
+    else
+    {
+        document.getElementById("autosave-settings-option").checked = false;
+    }
 
 
     // now that we've loaded the settings, let's generate a puzzle
-    clearPlayerGrid();
-    generatePuzzle();
+    // but first, let's see if we can load a puzzle!
+    // first we try to load a puzzle from the url
+    if(!loadPuzzleFromURL())
+    {
+        // if that fails, we try to load from the cookies
+        c = getCookie("saved-clues");
+        if(c !== "")
+        {
+            loadPuzzleFromCookies();
+        }
+        else
+        {
+            // if that fails, we generate a new puzzle
+            clearPlayerGrid();
+            generatePuzzle();
+        }
+    }
+    
+    // this is how we detect an unload on mobile browsers
+    // we save on unload
+    document.addEventListener('visibilitychange', function()
+    {
+        if(document.visibilityState === 'hidden')
+        {
+            saveEverything();
+        }
+    });
+    
+    // new feature dialog
+    let today = new Date();
+    let deadline = new Date(2024, 9, 12);
+    if(getCookie("difficulty") !== "" && getCookie("saw-modal") === "" && today <= deadline)
+    {
+        document.getElementById("new-feature-display").style.display = "block";
+        setCookie("saw-modal", "1", 10);
+    }
+};
+
+// save on unload
+document.onbeforeunload = function()
+{
+    saveEverything();
 };

@@ -50,6 +50,11 @@ function setTile(x, y)
     {
         // display the modal window
         document.getElementById("modal-display").style.display = "block";
+        
+        // clear the saved puzzle if it exists
+        setCookie("saved-clues", "", 0);
+        setCookie("saved-grid", "", 0);
+        globalDoNotSave = true;
     }
 
     // at this point we are done setting the grid. the rest of this function is cycling through the selection options

@@ -65,6 +65,8 @@ function generatePuzzle()
     {
         drawClue(globalClues[i]);
     }
+    // enable saving after generating a puzzle
+    globalDoNotSave = false;
 }
 
 

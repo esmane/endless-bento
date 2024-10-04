@@ -16,6 +16,7 @@
         <script src="js/main.js"></script>
         <script src="js/setup.js"></script>
         <script src="js/util.js"></script>
+        <script src="js/load.js"></script>
         <script src="js/interface/grid.js"></script>
         <script src="js/interface/buttons.js"></script>
         <script src="js/interface/clues.js"></script>
@@ -104,8 +105,17 @@
             </div>
             <br><br>
             
-            <button onclick="saveSettings()">save settings (will use cookies)</button><br>
-            <br>
+            <h3>save</h3>
+            <div class="settings-block">
+                <label for="autosave-puzzle-option">autosave puzzle</label><br>
+                <label for="autosave-settings-option">autosave settings</label><br>
+            </div>
+            <div class="settings-block">
+                <input type="checkbox" id="autosave-puzzle-option" onchange="setPuzzleAutosave()"><br>
+                <input type="checkbox" id="autosave-settings-option" onchange="setSettingsAutosave()"><br>
+            </div><br><br>
+            
+            <button onclick="saveSettings()">save settings</button>
         </div>
         
         
@@ -118,11 +128,12 @@
             <p>You select the tile you want to place by using the buttons below the grid. Instead of having a different button for every single possible tile, you select the color and shape that you want separately. You place tiles by clicking on the grid. Depending on the "autoselect mode" that you have set (under settings) the game may select a new color or shape automatically after you place a tile. You can delete a tile from the grid by right-clicking on it, and there is also a delete button in case you are playing on a touchscreen and can't right-click. Although each shape-color combination is only going to be used once in solving the puzzle, the game does not check this for you and you can (incorrectly) place multiple of the same tile.</p><br>
         
             <h2>explanations for the settings</h2>
-            <p><b>dark background:</b> When this is checked you get a dark background. If your browser is set to prefer dark pages this will default to being checked.</p>
             <p><b>difficulty:</b> This is how you tweak the difficulty of the generated puzzles. Changing this setting does not affect the current puzzle and will apply starting with the next puzzle generated.</p>
             <p><b>puzzle size:</b> You can change the size of the puzzle independently of the difficulty level. Both the width and height have a maximum value of 5 and a minimum value of 2, so you can generate any size puzzle between 2x2 and 5x5. If you enter an invalid number into one of these fields it will get rounded to the nearest allowed size when the next puzzle is generated. Like with the last option a change here will not affect the current puzzle.</p>
+            <p><b>dark background:</b> When this is checked you get a dark background. If your browser is set to prefer dark pages this will default to being checked.</p>
             <p><b>autoselect mode:</b> With this you can change what happens after a tile is placed. "Color" (or "Shape") will cause the next color (or shape) in line to become selected automatically whenever a tile is placed. "Neither" disables this behavior.</p>
-            <p><b>save settings: </b> This saves all the above settings using cookies so your settings will stay when you close and reopen the page. The settings will never autosave and you must click this button every time you change the settings if you want them to be saved. If you do not save your settings for a long time the cookies will expire and the settings will be reset. This is programmed to happen after 1000 days but may happen sooner if your browser sets a limit on cookie lifespan.</p><br><br>
+            <p><b>autosave puzzle:</b> When this is checked your puzzle will automatically save when the site is closed, and reload the next time you open the site. This feature uses cookies, and the cookies that save your puzzle are set to expire after 180 days. Unchecking this box will clear the saved puzzle data.</p>
+            <p><b>save settings:</b> This saves all the above settings using cookies so your settings will stay when you close and reopen the page. If the <b>autosave settings</b> option is checked the settings will save automatically when the site is closed. If it isn't checked, then you must press the button to have your settings be saved.</p>
         </div>
         
         
@@ -130,7 +141,8 @@
             <h2>about</h2>
             <p>It's a clone of the bento puzzle minigame from <i>Nancy Drew: Shadow at the Water's Edge</i>. I haven't seen this type of puzzle anywhere else so I made a browser version that generates its own puzzles. Have fun!</p>
             <p style="text-align:center"><a href="https://esmane.github.io/endless-bento-classic/">endless bento classic</a></p>
-            <p style="text-align:center"><a href="https://github.com/esmane/endless-bento">source code</a></p>
+            <p style="text-align:center"><a target="_blank" href="https://github.com/esmane/endless-bento">source code</a></p>
+            <p style="text-align:center"><a target="_blank" href="https://forms.gle/fBSUgqvWfwco1JiJ6">feedback/suggestions</a></p>
         </div>
         
         
@@ -163,6 +175,24 @@
                 <button id="modal-button" onclick="modalAction()">
                     new puzzle
                 </button>
+            </div>
+        </div>
+        
+        <!-- new feature modal -->
+        <div class="modal" id="new-feature-display" style="display:none">
+            <div class="overlay"></div>
+            <div class="modal-content">
+                <h2>new!</h2>
+                <p>I recently added the ability to have your puzzle autosave when you close the game.</p>
+                <p>Would you like to enable this feature now?</p>
+                
+                <button id="modal-button-yes" onclick="setPuzzleAutosave();document.getElementById('new-feature-display').style.display='none';document.getElementById('autosave-puzzle-option').checked = true;">
+                    yes
+                </button>
+                <button id="modal-button-no" onclick="saveSettings();document.getElementById('new-feature-display').style.display='none';">
+                    no
+                </button><br>
+                <p><a target="_blank" href="https://forms.gle/fBSUgqvWfwco1JiJ6">feedback/suggestions</a></p>
             </div>
         </div>
     </body>
