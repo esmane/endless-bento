@@ -122,7 +122,7 @@
         <div id="help" class="menu-class">
             <h2>how to play</h2>
             <p>Your goal is to fill the grid with tiles in such a way that all the clues are satisfied and every tile is different (no shape-color combination appears more than once). The clues show you select portions of the solution. You have to use logic to deduce where exactly in the grid each clues goes.</p>
-            <p>A clue may tell you the shape of a square, the color of a square, or both. Empty squares in a clue must be on the grid, but they could be anything.</p><br>
+            <p>A clue may tell you the shape of a square, the color of a square, or both. Empty squares in a clue must be part of the grid, but they could be anything.</p><br>
             
             <h2>controls</h2>
             <p>You select the tile you want to place by using the buttons below the grid. Instead of having a different button for every single possible tile, you select the color and shape that you want separately. You place tiles by clicking on the grid. Depending on the "autoselect mode" that you have set (under settings) the game may select a new color or shape automatically after you place a tile. You can delete a tile from the grid by right-clicking on it, and there is also a delete button in case you are playing on a touchscreen and can't right-click. Although each shape-color combination is only going to be used once in solving the puzzle, the game does not check this for you and you can (incorrectly) place multiple of the same tile.</p><br>
@@ -178,22 +178,5 @@
             </div>
         </div>
         
-        <!-- new feature modal -->
-        <div class="modal" id="new-feature-display" style="display:none">
-            <div class="overlay"></div>
-            <div class="modal-content">
-                <h2>new!</h2>
-                <p>I recently added the ability to have your puzzle autosave when you close the game.</p>
-                <p>Would you like to enable this feature now?</p>
-                
-                <button id="modal-button-yes" onclick="setPuzzleAutosave();document.getElementById('new-feature-display').style.display='none';document.getElementById('autosave-puzzle-option').checked = true;">
-                    yes
-                </button>
-                <button id="modal-button-no" onclick="saveSettings();document.getElementById('new-feature-display').style.display='none';">
-                    no
-                </button><br>
-                <p><a target="_blank" href="https://forms.gle/fBSUgqvWfwco1JiJ6">feedback/suggestions</a></p>
-            </div>
-        </div>
     </body>
 </html>
