@@ -113,22 +113,26 @@ function setupButtons()
     if(Number(globalSelectedColor) >= GRID_SIZE_W)
     {
         globalSelectedColor = '0';
-        globalOldSelectedColor = '0';
-        setColor('0');
+        setColor('0', true);
     }
     else
     {
-        setColor(globalSelectedColor);
+        setColor(globalSelectedColor, true);
     }
 
     if(Number(globalSelectedShape) >= GRID_SIZE_H)
     {
         globalSelectedShape = '0';
-        globalOldSelectedShape = '0';
-        setShape('0');
+        setShape('0', true);
     }
     else
     {
-        setShape(globalSelectedShape);
+        setShape(globalSelectedShape, true);
+    }
+    
+    if(globalSelectedDelete)
+    {
+        globalSelectedDelete = false;
+        setDelete();
     }
 }

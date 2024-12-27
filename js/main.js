@@ -12,8 +12,8 @@ var globalIsAutosaveSettings = false;
 var globalDoNotSave = false;
 
 // these are for the buttons
-var globalSelectedColor = '1';
-var globalSelectedShape = '1';
+var globalSelectedColor = '0';
+var globalSelectedShape = '0';
 var globalSelectedDelete = false;
 
 // the grid
@@ -28,9 +28,6 @@ window.onload = function()
     // setup the default grid and button sizes
     setupGrid();
     setupButtons();
-
-    setColor('0');
-    setShape('0');
 
 
     // now let's attempt to load the previous settings using cookies
