@@ -52,10 +52,10 @@ function checkDelete()
 // these functions are executed when the buttons at the bottom of the puzzle are clicked.
 // they set the color and shape of the tile that will get placed when the grid is clicked.
 // additionally we can set to delete mode, and we have the function that sets that in here as well.
-function setColor(color)
+function setColor(color, force)
 {
     // if we click the currently selected color, and we are not in delete mode, unset the  color
-    if(globalSelectedColor === color && globalSelectedDelete === false)
+    if(globalSelectedColor === color && globalSelectedDelete === false && force === undefined)
     {
         setButton(COLOR, false);
         globalSelectedColor = 'x';
@@ -86,10 +86,10 @@ function setColor(color)
 }
 
 
-function setShape(shape)
+function setShape(shape, force)
 {
     // if we click the currently selected shape, and we are not in delete mode, unset the shape
-    if(globalSelectedShape === shape && globalSelectedDelete === false)
+    if(globalSelectedShape === shape && globalSelectedDelete === false && force === undefined)
     {
         setButton(SHAPE, false);
         globalSelectedShape = 'x';
