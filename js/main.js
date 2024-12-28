@@ -4,7 +4,7 @@ var GRID_SIZE_H = 3;    // also, the number of shapes
 var DIFFICULTY = 1;     // 0 for jr, 1 for sr, 2 for master
 
 // global interface settings
-var globalSettingAutoSelect = "s";    // c for color, s for shape, n for none
+var globalSettingAutoSelect = "n";    // c for color, s for shape, n for none
 var globalIsDarkBackground = false;
 var globalIsAutosavePuzzle = false;
 var globalIsAutosaveSettings = false;
@@ -14,8 +14,7 @@ var globalDoNotSave = false;
 // these are for the buttons
 var globalSelectedColor = '0';
 var globalSelectedShape = '0';
-var globalOldSelectedColor = '0';
-var globalOldSelectedShape = '0';
+var globalSelectedDelete = false;
 
 // the grid
 var globalPlayerGrid;
@@ -29,9 +28,6 @@ window.onload = function()
     // setup the default grid and button sizes
     setupGrid();
     setupButtons();
-
-    setColor('0');
-    setShape('0');
 
 
     // now let's attempt to load the previous settings using cookies
@@ -65,15 +61,16 @@ window.onload = function()
             globalSettingAutoSelect = "c";
             break;
 
-        case 'n':
-            document.getElementById("autosel-off").checked = true;
-            globalSettingAutoSelect = "n";
-            break;
-
-        // default to shape
-        default:
+        case 's':
             document.getElementById("autosel-shape").checked = true;
             globalSettingAutoSelect = "s";
+            break;
+
+        // default to neither
+        default:
+
+            document.getElementById("autosel-off").checked = true;
+            globalSettingAutoSelect = "n";
             break;
     }
 

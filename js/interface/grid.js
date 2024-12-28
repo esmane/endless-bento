@@ -40,8 +40,51 @@ function redrawGrid()
 // the alt-text so that the game can be played without images
 function setTile(x, y)
 {
-    // set the three main things
-    globalPlayerGrid[x][y] = globalSelectedColor + '-' + globalSelectedShape;
+    // this depends on what is set up
+    var toSetColor = 'x';
+    var toSetShape = 'x';
+    
+    // if not set delete
+    if(!globalSelectedDelete)
+    {
+        if(globalSelectedColor !== 'x' && globalSelectedShape !== 'x')
+        {
+            // set both
+            toSetColor = globalSelectedColor;
+            toSetShape = globalSelectedShape;
+        }
+        else if(globalSelectedShape !== 'x')
+        {
+            // set only shape
+            toSetShape = globalSelectedShape;
+            
+            if(globalPlayerGrid[x][y].charAt(2) === globalSelectedShape)
+            {
+                toSetColor = 'x';
+            }
+            else
+            {
+                toSetColor = globalPlayerGrid[x][y].charAt(0);
+            }
+        }
+        else if(globalSelectedColor !== 'x')
+        {
+            // set only shape
+            toSetColor = globalSelectedColor;
+            
+            if(globalPlayerGrid[x][y].charAt(0) === globalSelectedColor)
+            {
+                toSetShape = 'x';
+            }
+            else
+            {
+                toSetShape = globalPlayerGrid[x][y].charAt(2);
+            }
+        }   
+    }
+                
+    // set it         
+    globalPlayerGrid[x][y] = toSetColor + '-' + toSetShape;
     document.getElementById(x + '-' + y).src = "./tiles/" + globalPlayerGrid[x][y] + ".png";
     document.getElementById(x + '-' + y).alt = globalPlayerGrid[x][y];
 
@@ -59,7 +102,7 @@ function setTile(x, y)
 
     // at this point we are done setting the grid. the rest of this function is cycling through the selection options
     // cycle through the different tile selections depending on the setting and if we are currently on delete (don't cycle delete)
-    if(globalSelectedColor !== 'x')
+    if(globalSelectedColor !== 'x' && globalSelectedShape !== 'x' && globalSelectedDelete === false)
     {
         switch(globalSettingAutoSelect)
         {
