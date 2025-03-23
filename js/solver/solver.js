@@ -167,6 +167,7 @@ function solverEliminateClues(clueNo)
                     {
                         for(let gridYY = 0; gridYY < GRID_SIZE_H; gridYY++)
                         {
+                            generatorUsedRelElimination = true;
                             solverEliminatePossibility(gridXX, gridYY, globalClues[clueNo][clueX][clueY]);
                         }
                     }
@@ -255,7 +256,15 @@ function solverCheckClueLocations(clueNo)
                     }
                     else if(solverIsPossibility(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY]))
                     {
-                        continue _nextSquare;
+                        if(checkDuplicates(used, globalClues[clueNo][clueX][clueY], 1))
+                        {
+                            continue _nextSquare;
+                        }
+                        else
+                        {
+                            fits = false;
+                            break _clueCheckLoop;
+                        }
                     }
                     else
                     {

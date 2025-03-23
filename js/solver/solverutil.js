@@ -65,6 +65,7 @@ function checkDuplicates(used, match, count)
             if(used[i] === match)
             {
                 // if the tile we need to match here was already used to match a different square within the same clue, the clue actually cannot fit in the desired position
+                generatorUsedNewElimination = true;
                 return false;
             }
         }
