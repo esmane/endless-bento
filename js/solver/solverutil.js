@@ -12,28 +12,66 @@ function solverIsPossibility(x, y, tile)
 }
 
 // these next two check if a given color or shape is a valid possibility for the given square. any tile with the given color or shape is a valid possibility
-function solverIsColorPossibility(x, y, color)
+function solverIsColorPossibility(x, y, color, used)
 {
+    var count = 0;
+    var match = "";
     for(let i = 0; i < solverPossibilityGrid[x][y].length; i++)
     {
         if(solverPossibilityGrid[x][y][i].charAt(0) === color)
         {
-            return true;
+            count++;
+            if(count === 1)
+            {
+                match = solverPossibilityGrid[x][y][i];
+            }
+            else
+            {
+                return true;
+            }
         }
     }
-    return false;
+    return checkDuplicates(used, match, count)
 }
 
-function solverIsShapePossibility(x, y, shape)
+function solverIsShapePossibility(x, y, shape, used)
 {
+    var count = 0;
+    var match = "";  // if there is only one possibility that fits the desired shape into the spot, we want to know exactly what tile it is using
     for(let i = 0; i < solverPossibilityGrid[x][y].length; i++)
     {
         if(solverPossibilityGrid[x][y][i].charAt(2) === shape)
         {
-            return true;
+            count++;
+            if(count === 1)
+            {
+                match = solverPossibilityGrid[x][y][i];
+            }
+            else
+            {
+                return true;
+            }
         }
     }
-    return false;
+    return checkDuplicates(used, match, count);
+}
+
+function checkDuplicates(used, match, count)
+{
+    if(count === 1)
+    {
+        for(let i = 0; i < used.length; i++)
+        {
+            if(used[i] === match)
+            {
+                // if the tile we need to match here was already used to match a different square within the same clue, the clue actually cannot fit in the desired position
+                return false;
+            }
+        }
+        used.push(match);
+        return true;
+    }
+    return false;    
 }
 
 
