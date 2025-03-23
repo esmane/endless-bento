@@ -214,6 +214,7 @@ function solverCheckClueLocations(clueNo)
         for(let gridY = 0; gridY <= (GRID_SIZE_H - globalClues[clueNo][0].length); gridY++)
         {
             let fits = true;
+            let used = [];
             // now we need to check every square of the clue
             _clueCheckLoop:
             for(let clueX = 0; clueX < globalClues[clueNo].length; clueX++)
@@ -229,7 +230,7 @@ function solverCheckClueLocations(clueNo)
                     else if(globalClues[clueNo][clueX][clueY].charAt(0) === 'x')
                     {
                         // a clue that tells us shape only
-                        if(solverIsShapePossibility(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY].charAt(2)))
+                        if(solverIsShapePossibility(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY].charAt(2), used))
                         {
                             continue _nextSquare;
                         }
@@ -242,7 +243,7 @@ function solverCheckClueLocations(clueNo)
                     else if(globalClues[clueNo][clueX][clueY].charAt(2) === 'x')
                     {
                         // a clue that tells us shape only
-                        if(solverIsColorPossibility(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY].charAt(0)))
+                        if(solverIsColorPossibility(gridX + clueX, gridY + clueY, globalClues[clueNo][clueX][clueY].charAt(0), used))
                         {
                             continue _nextSquare;
                         }
