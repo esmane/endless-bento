@@ -31,7 +31,7 @@ function solverIsColorPossibility(x, y, color, used)
             }
         }
     }
-    return checkDuplicates(used, match, count)
+    return checkDuplicates(used, match, count);
 }
 
 function solverIsShapePossibility(x, y, shape, used)
