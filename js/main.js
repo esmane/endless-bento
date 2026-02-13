@@ -163,15 +163,6 @@ window.onload = function()
             saveEverything();
         }
     });
-    
-    // this is potentially a resize on mobile browsers
-    screen.orientation.addEventListener("change", function()
-    {
-        globalScaleFactor = determineScale();
-        setupButtonsHTML(globalScaleFactor);
-        setupCluesHTML(globalScaleFactor);
-        setupGridHTML(true, globalScaleFactor);
-    });
 };
 
 
