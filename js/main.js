@@ -163,7 +163,17 @@ window.onload = function()
             saveEverything();
         }
     });
+    
+    // this is potentially a resize on mobile browsers
+    screen.orientation.addEventListener("change", function()
+    {
+        globalScaleFactor = determineScale();
+        setupButtonsHTML(globalScaleFactor);
+        setupCluesHTML(globalScaleFactor);
+        setupGridHTML(true, globalScaleFactor);
+    });
 };
+
 
 // save on unload
 document.onbeforeunload = function()
@@ -195,11 +205,3 @@ window.onresize = function()
         }, 250);
 };
 
-screen.orientation.onchange = function()
-{
-    console.log("flip!")
-    globalScaleFactor = determineScale();
-    setupButtonsHTML(globalScaleFactor);
-    setupCluesHTML(globalScaleFactor);
-    setupGridHTML(true, globalScaleFactor);
-}
