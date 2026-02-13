@@ -20,14 +20,16 @@ var globalSelectedDelete = false;
 var globalPlayerGrid;
 var globalSolutionGrid;
 var globalClues = [];
+var globalScaleFactor = 1;
 
 
 // main init function. runs on startup and is responsible for loading the settings and generating the first puzzle.
 window.onload = function()
 {
+    globalScaleFactor = determineScale();
     // setup the default grid and button sizes
-    setupGrid();
-    setupButtons();
+    setupGridHTML(false, globalScaleFactor);
+    setupButtonsHTML(globalScaleFactor);
 
 
     // now let's attempt to load the previous settings using cookies
@@ -168,3 +170,36 @@ document.onbeforeunload = function()
 {
     saveEverything();
 };
+
+
+// this is called when you click the modal
+function modalAction()
+{
+    document.getElementById("modal-display").style.display = "none";
+    generatePuzzle();
+}
+
+
+// scale grid when window is resized
+// there are probably better ways to do this but this is simple enough
+var scaleTimeout;
+window.onresize = function()
+{
+    clearTimeout(scaleTimeout);
+    scaleTimeout = setTimeout(function()
+        {
+            globalScaleFactor = determineScale();
+            setupButtonsHTML(globalScaleFactor);
+            setupCluesHTML(globalScaleFactor);
+            setupGridHTML(true, globalScaleFactor);
+        }, 250);
+};
+
+screen.orientation.onchange = function()
+{
+    console.log("flip!")
+    globalScaleFactor = determineScale();
+    setupButtonsHTML(globalScaleFactor);
+    setupCluesHTML(globalScaleFactor);
+    setupGridHTML(true, globalScaleFactor);
+}

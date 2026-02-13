@@ -148,22 +148,3 @@ function clearTile(x, y)
     document.getElementById(x + '-' + y).src = "./tiles/" + globalPlayerGrid[x][y] + ".png";
     document.getElementById(x + '-' + y).alt = globalPlayerGrid[x][y];
 }
-
-
-// this is called when you click the modal
-function modalAction()
-{
-    document.getElementById("modal-display").style.display = "none";
-    generatePuzzle();
-}
-
-
-
-// scale grid when window is resized
-// there are probably better ways to do this but this is simple enough
-var scaleTimeout;
-window.onresize = function()
-{
-    clearTimeout(scaleTimeout);
-    scaleTimeout = setTimeout(function() {setupGrid(true);}, 250);
-};

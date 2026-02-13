@@ -42,8 +42,8 @@ function generatePuzzle()
     // first step, make sure the grid size hasn't been changed before generating the puzzle
     if(GRID_SIZE_W !== globalPlayerGrid.length || GRID_SIZE_H !== globalPlayerGrid[0].length)
     {
-        setupGrid();
-        setupButtons();
+        setupGridHTML(false, globalScaleFactor);
+        setupButtonsHTML(globalScaleFactor);
     }
 
     var goodPuzzle = false;
@@ -60,11 +60,7 @@ function generatePuzzle()
     }
 
     // now we have a good puzzle
-    clearClues();
-    for(let i = 0; i < globalClues.length; i++)
-    {
-        drawClue(globalClues[i]);
-    }
+    setupCluesHTML(globalScaleFactor)
     // enable saving after generating a puzzle
     globalDoNotSave = false;
 }
