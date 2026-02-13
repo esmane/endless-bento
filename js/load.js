@@ -13,8 +13,8 @@ function loadPuzzle(clues, grid)
         GRID_SIZE_H = globalPlayerGrid[0].length;
         
         // when loading a puzzle we do not want to clear the grid
-        setupGrid(true);
-        setupButtons();
+        setupGridHTML(true, globalScaleFactor);
+        setupButtonsHTML(globalScaleFactor);
     }
     else
     {
@@ -64,11 +64,7 @@ function loadPuzzle(clues, grid)
     
     
     // step four: redraw the clues
-    clearClues();
-    for(let i = 0; i < globalClues.length; i++)
-    {
-        drawClue(globalClues[i]);
-    }
+    setupCluesHTML(globalScaleFactor);
 }
 
 
