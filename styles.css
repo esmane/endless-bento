@@ -186,7 +186,7 @@ a:link, a:visited {
 
 
 /* narrow screen */
-@media screen and (max-aspect-ratio: 1/1) {
+@media screen and (max-aspect-ratio: 1/1 and orientation: portrait) {
 	.clue-block {
 		display: inline-block;
 		max-width: 95vw;
