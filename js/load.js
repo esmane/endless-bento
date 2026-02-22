@@ -98,22 +98,31 @@ function savePuzzleToCookies()
 // used for sharing puzzles or saving without cookies
 function loadPuzzleFromURL()
 {
-    // if there is no puzzle in the url, do not attempt to load
-    // and return false
-    if(window.location.search === "")
-    {
-        return false;
-    }
-    
     const searchParams = new URLSearchParams(window.location.search);
-    var clues = searchParams.get("c");
-    var grid = searchParams.get("g");
-    
-    clues = decodeURIComponent(clues);
-    grid = decodeURIComponent(grid);
-    
-    loadPuzzle(clues, grid);
-    return true;
+    if(searchParams.has("c") && searchParams.has("g"))
+    {
+        var clues = searchParams.get("c");
+        var grid = searchParams.get("g");
+        clues = decodeURIComponent(clues);
+        grid = decodeURIComponent(grid);
+        
+        loadPuzzle(clues, grid);
+        return true;
+    }
+
+    // check for force bento
+    // if we don't have force-bento, we do something silly
+    if(!searchParams.has("force-bento"))
+    {
+        // on april fools day, we do something silly
+        const date = new Date();
+        if(date.getMonth() === 3 && date.getDate() === 1)
+        {
+            console.log("April Fools!");
+            // window.location = "https://esmane.github.io/endless-shave-ice/";
+        }
+    }
+    return false;
 }
 
 function savePuzzleToURL()
