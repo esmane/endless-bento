@@ -119,7 +119,7 @@ function loadPuzzleFromURL()
         if(date.getMonth() === 3 && date.getDate() === 1)
         {
             console.log("April Fools!");
-            // window.location = "https://esmane.github.io/endless-shave-ice/";
+            window.location = "https://esmane.github.io/endless-shave-ice/";
         }
     }
     return false;
@@ -141,3 +141,4 @@ function savePuzzleToURL()
     
     console.log(puzzleURL);
 }
+
