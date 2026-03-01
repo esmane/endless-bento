@@ -44,8 +44,12 @@ function setTile(x, y)
     var toSetColor = 'x';
     var toSetShape = 'x';
     
+    var curSetColor = globalPlayerGrid[x][y].charAt(0);
+    var curSetShape = globalPlayerGrid[x][y].charAt(2);
+    
     // if not set delete
-    if(!globalSelectedDelete)
+    // if the tile is already equal to what we are about to set it to, that also counts as a delete
+    if((globalSelectedShape !== curSetShape || globalSelectedColor !== curSetColor) && !globalSelectedDelete)
     {
         if(globalSelectedColor !== 'x' && globalSelectedShape !== 'x')
         {
@@ -58,13 +62,13 @@ function setTile(x, y)
             // set only shape
             toSetShape = globalSelectedShape;
             
-            if(globalPlayerGrid[x][y].charAt(2) === globalSelectedShape)
+            if(curSetShape === globalSelectedShape)
             {
                 toSetColor = 'x';
             }
             else
             {
-                toSetColor = globalPlayerGrid[x][y].charAt(0);
+                toSetColor = curSetColor;
             }
         }
         else if(globalSelectedColor !== 'x')
@@ -72,13 +76,13 @@ function setTile(x, y)
             // set only shape
             toSetColor = globalSelectedColor;
             
-            if(globalPlayerGrid[x][y].charAt(0) === globalSelectedColor)
+            if(curSetColor === globalSelectedColor)
             {
                 toSetShape = 'x';
             }
             else
             {
-                toSetShape = globalPlayerGrid[x][y].charAt(2);
+                toSetShape = curSetShape;
             }
         }   
     }
