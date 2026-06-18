@@ -190,7 +190,7 @@ function modalAction()
 function modalActionTryGame()
 {
     document.getElementById("modal-display2").style.display = "none";
-    setCookie("sawmodal", true, 1000)
+    setCookie("sawmodal", true, 1000);
 }
 
 
