@@ -163,13 +163,6 @@ window.onload = function()
             saveEverything();
         }
     });
-    
-    
-    // modal warning
-    if(document.cookie && !getCookie("sawmodal"))
-    {
-        document.getElementById("modal-display2").style.display = "block";
-    }
 };
 
 
@@ -185,12 +178,6 @@ function modalAction()
 {
     document.getElementById("modal-display").style.display = "none";
     generatePuzzle();
-}
-
-function modalActionTryGame()
-{
-    document.getElementById("modal-display2").style.display = "none";
-    setCookie("sawmodal", true, 1000);
 }
 
 
